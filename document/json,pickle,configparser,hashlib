@@ -1,0 +1,192 @@
+json,pickle,configparser,hashlib
+
+什么是序列化与反序列化
+	内存中的数据类型 ---> 序列化   ---> 特定的格式(json格式 或 pickle格式)
+	内存中的数据类型 <--- 反序列化 <--- 特定的格式(json格式 或 pickle格式)
+
+为何要序列化
+	序列化得到的结果是特定的格式内容
+	用途:	1.可用于存储
+				可以是一种专用的格式: pickle 只能被Python 识别
+				也可以是通用数据类型,但不推荐
+		 	2.传输给其他平台使用
+		 		应该是一种通用,能搞被所有语言识别的格式: json
+
+
+===== json =====
+序列化
+	json.dumps(序列化内容)
+
+结合with open更简便的将反序列化内容写入磁盘
+	with open('test.json',mode='rt',encoding='utf-8') as f:
+		json.dump([1,'aa',True],f)
+
+
+反序列化
+	json.loads(json数据)	
+
+结合with open更简便的读取 序列化内容
+	json.load()		
+
+ujson模块与json模块用法相同,但是ujson.dumps 与 ujson.loads功能更快
+
+
+===== 猴子补丁 =====
+程序入口文件
+start.py
+	import json
+	import ujson
+
+
+	def monkey_path_json():
+	    json.__name__ = 'ujson'
+	    json.dumps = ujson.dumps
+
+
+	import a
+
+	if __name__ == '__main__':
+	    monkey_path_json()
+	    a.func()
+
+a.py
+	import json
+	import ujson
+
+	def func():
+	    print(json.dumps)
+	    print(ujson.dumps)
+
+    	print(json.__name__)
+   		print(ujson.__name__)
+
+
+
+===== pickle ===== 与json 模块使用方法类似
+序列化
+	pickle.dumps()
+
+	pickle.dump()
+
+反序列化
+	pickle.loads()
+
+	pickle.load()
+
+
+
+===== configparser =====
+ini文件解析器  可以用于定义读取配置文件
+
+# 将配置文件内容读取到内存
+config = configparser.ConfigParser()
+config.read(r'test.ini')
+
+# 获取有哪些 section
+config.sections()
+
+# 获取指定section下的配置的key
+config.options(section='section1')
+
+# 获取指定section下配置的 key value
+config.items(section='section1')
+
+# 获取指定 section 下某个option 对应的值 值得类型为str
+config.get()
+
+# 获取指定 section 下某个option 对应的值  值的类型为int
+config.getint()
+
+
+===== hash =====
+import hashlib
+
+hash 是一类算法,该算法接收传入的内容,经过运算得到一串hash值
+hash 值得特点:
+	1.只要传入的内容一样,得到的hash值必然一样
+	2.不能由hash值反解成内容
+	3.只要使用的hash算法不变,内容不管怎么变,hash值得长度是固定的
+
+
+
+	# 选择加密算法 md5 sha1 sha256 sha512 ....
+	m = hashlib.md5()
+
+	# 添加字符串进行加密 可多次拼接 相当于对 Abcd1234 加密
+	m.update('Abcd'.encode('utf-8'))
+	m.update('1234'.encode('utf-8'))
+
+	# 取出加密后的值
+	res = m.hexdigest()
+
+	print(res)
+
+===== subprocess =====
+用于执行系统命令
+import subprocess
+
+obj = subprocess.Popen('echo 123;ls /root11',  # 执行的系统命令
+                       shell=True,
+                       stdout=subprocess.PIPE,  # 将正确的结果信息 通过管道发送给stdout
+                       stderr=subprocess.PIPE   # 将错误的结果信息 通过管道发送给stderr
+)
+
+res = obj.stdout.read()
+res_err = obj.stderr.read()
+
+#分别打印正确的与错误的信息结果
+print(res.decode('utf-8'),end='')  
+print(res_err.decode('utf-8'))    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
