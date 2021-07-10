@@ -32,8 +32,17 @@ def index(x,y):
 
 
 index(1,2)
+# 结论:
+# 开始调用 先从上到下 再 自下而上 结束
 
-
+#### ++++ ####
+# 开始运行====>deco1.wrapper1
+# 开始运行====>deco2.wrapper2
+# 开始运行====>deco3.outter3.wrapper2
+# from index 1 2
+# 结束运行====>deco3.outter3.wrapper2
+# 结束运行====>deco2.wrapper2
+# 结束运行====>deco1.wrapper1
 
 
 
