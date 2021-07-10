@@ -31,8 +31,16 @@ with open(r'test.json',mode='rt',encoding='utf-8') as f:
     print(l_loads) # [1, "aa", true]
 
 
+
+import pickle
+# pickle 与 json 用法相似 但pickle序列化的字符串只能被Python使用
+
+#序列化
+res_pickle_dumps = [1,'aa',True]
+print(pickle.dumps(res_pickle_dumps))
+
+
 """
-    ===== pickle ===== 与json 模块使用方法类似
     序列化
         pickle.dumps()
     
