@@ -1,0 +1,5 @@
+2021-07-09 17:30:31 PM - root - DEBUG -logging_module:  调试日志内容 DEBUG
+2021-07-09 17:30:31 PM - root - INFO -logging_module:  消息日志内容 INFO
+2021-07-09 17:30:31 PM - root - WARNING -logging_module:  警告日志内容 WARNING
+2021-07-09 17:30:31 PM - root - ERROR -logging_module:  错误日志内容 ERROR
+2021-07-09 17:30:31 PM - root - CRITICAL -logging_module:  严重错误内容 CRITICAL
