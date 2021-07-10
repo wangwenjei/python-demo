@@ -12,3 +12,6 @@ res_err = obj.stderr.read()
 print(res.decode('utf-8'),end='')  # ===> 123
 print(res_err.decode('utf-8'))     # ===> ls: /root11: No such file or directory
 
+
+
+

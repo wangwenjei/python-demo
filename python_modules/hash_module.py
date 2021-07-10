@@ -1,5 +1,11 @@
 import hashlib
-
+"""
+    hash 是一类算法,该算法接收传入的内容,经过运算得到一串hash值
+    hash 值得特点:
+        1.只要传入的内容一样,得到的hash值必然一样
+        2.不能由hash值反解成内容
+        3.只要使用的hash算法不变,内容不管怎么变,hash值得长度是固定的
+"""
 # 选择加密算法 md5 sha1 sha256 sha512 ....
 m = hashlib.md5()
 
