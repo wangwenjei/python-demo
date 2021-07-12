@@ -13,4 +13,5 @@ configparser   ini文件解析器  可以用于定义读取配置文件
 hashlib        hash算法库
 subprocess     用于执行系统命令
 logging     日志功能
+re
 
