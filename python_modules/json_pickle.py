@@ -33,21 +33,14 @@ with open(r'test.json',mode='rt',encoding='utf-8') as f:
 
 
 import pickle
-# pickle 与 json 用法相似 但pickle序列化的字符串只能被Python使用
-
+"""
+    pickle 与 json 用法相似 但pickle序列化的字符串只能被Python使用
+    pickle.dump()  pickle.load() 与json.dump() json.load() 用法相同
+"""
 #序列化
 res_pickle_dumps = [1,'aa',True]
 print(pickle.dumps(res_pickle_dumps))
+# b'\x80\x04\x95\r\x00\x00\x00\x00\x00\x00\x00]\x94(K\x01\x8c\x02aa\x94\x88e.'
 
-
-"""
-    序列化
-        pickle.dumps()
-    
-        pickle.dump()
-    
-    反序列化
-        pickle.loads()
-    
-        pickle.load()
-"""
+# 反序列化
+print(pickle.loads(pickle.dumps(res_pickle_dumps)))  # [1, 'aa', True]
