@@ -51,7 +51,7 @@ def save_user(**kwargs):
         json.dump(user_dic, f, ensure_ascii=False)
 
 
-# 修改数据
+# 用户修改数据
 def update_user(user_data_dic):
     user_name = user_data_dic.get('username')
 

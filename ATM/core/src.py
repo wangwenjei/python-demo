@@ -9,11 +9,14 @@ login_user = None
 # 1、注册功能
 def register():
     while True:
+
+        # 接收用户输入信息
         user_name = input('请输入用户名:').strip()
         user_passwd = input('请输入密码:').strip()
         re_user_passwd = input('请确认密码').strip()
 
         if user_passwd == re_user_passwd:
+            # 调用用户注册接口
             flag, msg = user_interface.register_interface(user_name, user_passwd)
 
             if flag:
@@ -29,12 +32,16 @@ def register():
 # 2、登录功能
 def login():
     while True:
+
         user_name = input('请输入用户名:').strip()
         user_passwd = input('请输入密码:').strip()
 
+        # 调用用户登录接口
         flag, msg = user_interface.login_interface(user_name, user_passwd)
         if flag:
             print(msg)
+
+            # 修改全局 login_user 变量,记录用户是否登录
             global login_user
             login_user = user_name
             break
@@ -42,9 +49,10 @@ def login():
             print(msg)
 
 
-# 3、查看余额
+# 3、查看账户余额
 @common.login_auth
 def check_balance():
+    # 调用用户余额查询接口
     balance = user_interface.check_bal_interface(login_user)
     print(f'用户 [{login_user}] 的余额为: {balance}$')
 
@@ -57,6 +65,7 @@ def withdraw():
         if not money.isdigit():
             print('输入不合法,请重新输入')
 
+        # 调用用户余额查询接口
         flag, msg = bank_interface.withdraw_interface(username=login_user,
                                                       money=float(money))
 
@@ -66,6 +75,7 @@ def withdraw():
         else:
             print(msg)
             break
+
 
 # 5、还款功能
 @common.login_auth

@@ -6,7 +6,7 @@ from db import db_handle
 from lib import common
 
 
-# 注册接口
+# 用户注册接口
 def register_interface(user_name, user_passwd):
     """
     :param user_name: 用户名
@@ -31,8 +31,9 @@ def register_interface(user_name, user_passwd):
     return True, f'用户 [{user_name}] 注册成功!'
 
 
-# 登录接口
+# 用户登录接口
 def login_interface(user_name, user_passwd):
+
     # 获取用户数据
     user_data_dic = db_handle.select_user(user_name)
 
@@ -46,7 +47,7 @@ def login_interface(user_name, user_passwd):
         return False, '用户名或密码错误'
 
 
-# 查看余额接口
+# 用户余额查询接口
 def check_bal_interface(user_name):
     user_data_dic = db_handle.select_user(user_name)
     return user_data_dic['balance']
