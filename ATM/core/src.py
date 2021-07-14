@@ -1,4 +1,10 @@
 from interface import user_interface
+from interface import bank_interface
+from lib import common
+
+# 全局变量，记录用户是否已登录
+login_user = None
+
 
 # 1、注册功能
 def register():
@@ -8,49 +14,85 @@ def register():
         re_user_passwd = input('请确认密码').strip()
 
         if user_passwd == re_user_passwd:
+            flag, msg = user_interface.register_interface(user_name, user_passwd)
 
-            pass
-            # user_interface.register_interface()
+            if flag:
+                print(msg)
+                break
+            else:
+                print(msg)
+
         else:
             print('密码不一致')
 
 
 # 2、登录功能
 def login():
-    print('登录功能')
+    while True:
+        user_name = input('请输入用户名:').strip()
+        user_passwd = input('请输入密码:').strip()
+
+        flag, msg = user_interface.login_interface(user_name, user_passwd)
+        if flag:
+            print(msg)
+            global login_user
+            login_user = user_name
+            break
+        else:
+            print(msg)
 
 
 # 3、查看余额
+@common.login_auth
 def check_balance():
-    print('查询余额功能')
+    balance = user_interface.check_bal_interface(login_user)
+    print(f'用户 [{login_user}] 的余额为: {balance}$')
 
 
 # 4、提现功能
+@common.login_auth
 def withdraw():
-    print('提现功能')
+    while True:
+        money = input('请输入提现金额').strip()
+        if not money.isdigit():
+            print('输入不合法,请重新输入')
 
+        flag, msg = bank_interface.withdraw_interface(username=login_user,
+                                                      money=float(money))
+
+        if flag:
+            print(msg)
+            break
+        else:
+            print(msg)
+            break
 
 # 5、还款功能
+@common.login_auth
 def repay():
     print('还款功能')
 
 
 # 6、转账功能
+@common.login_auth
 def transfer():
     pass
 
 
 # 7、查看流水
+@common.login_auth
 def check_flow():
     pass
 
 
 # 8、购物功能
+@common.login_auth
 def shopping():
     pass
 
 
 # 9、查看购物车
+@common.login_auth
 def check_shop_car():
     pass
 
@@ -93,6 +135,5 @@ def run():
         else:
             print('请输入正确编号')
 
+
 run()
-
-

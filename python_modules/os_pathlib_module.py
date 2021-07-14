@@ -25,8 +25,11 @@ print(os.path.dirname('/Users/python/python-demo/python_modules/os_pathlib_modul
 # 获取最后一级文件名  os_pathlib_module.py
 print(os.path.basename('/Users/python/python-demo/python_modules/os_pathlib_module.py'))
 
-# 判断文件是否存在
+# 只能判断文件是否存在
 print(os.path.isfile(r'os_pathlib_module.py'))  # True
+
+# 判断文件 或 文件夹是否存在
+print(os.path.exists(r'logging_module'))   # True
 
 # 判断文件夹是否存在
 print(os.path.isdir(r'../ATM')) # True
