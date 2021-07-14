@@ -14,12 +14,13 @@ import json
                     应该是一种通用,能搞被所有语言识别的格式: json
 """
 # json 序列化   序列化后的内容是 str类型
-print(json.dumps([1,'aa',True])) # [1, "aa", true]
+# ensure_ascii=False  默认为True此时中文为字符编码, Flase则表示写入的中文
+print(json.dumps([1,'aa',True,'哈哈哈'],ensure_ascii=False)) # [1, "aa", true, "哈哈哈"]
 
 # 结合with open更简便的将反序列化内容写入磁盘
-res_dumps = json.dumps([1,'aa',True])
+res_list = [1,'aa',True,'哈哈哈']
 with open(r'./test.json',mode='wt',encoding='utf-8') as f:
-    json.dump(res_dumps,f)
+    json.dump(res_list,f,ensure_ascii=False)
 
 # 反序列化  反序列化的内容需要是 str类型
 print(json.loads('[1, "aa", true]'))  # [1, 'aa', True]
