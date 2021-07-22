@@ -1,0 +1,8 @@
+[2021-07-21 15:18:28,303][MainThread:4647108096][task_id:user][user_interface.py:47][INFO][用户 [wwj] 登录成功!]
+[2021-07-21 15:18:43,518][MainThread:4647108096][task_id:user][user_interface.py:47][INFO][用户 [wwj] 登录成功!]
+[2021-07-21 16:25:20,249][MainThread:4559932928][task_id:user][user_interface.py:27][WARNING][用户名 [fwwj] 重复,请重新输入新的用户名]
+[2021-07-21 16:25:24,553][MainThread:4559932928][task_id:user][user_interface.py:38][INFO][用户 [] 注册成功!]
+[2021-07-21 16:25:33,936][MainThread:4559932928][task_id:user][user_interface.py:55][WARNING][用户名或密码错误]
+[2021-07-21 16:25:38,681][MainThread:4559932928][task_id:user][user_interface.py:51][INFO][用户 [wwj] 登录成功!]
+[2021-07-21 16:28:07,813][MainThread:4681068032][task_id:user][user_interface.py:51][INFO][用户 [wwj] 登录成功!]
+[2021-07-21 16:28:13,562][MainThread:4681068032][task_id:shop][shop_interface.py:31][ERROR][支付失败:账户余额不足,请充值!!!]
