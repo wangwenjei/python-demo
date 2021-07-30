@@ -1,6 +1,8 @@
 import random
 
-
+"""
+    打印随机字符
+"""
 
 
 def make_code(size: int = 4) -> str:
@@ -11,4 +13,6 @@ def make_code(size: int = 4) -> str:
         s2 = str(random.randint(0, 9))
         res += random.choice([s1, s2])
     return res
+
+
 print(make_code(6))

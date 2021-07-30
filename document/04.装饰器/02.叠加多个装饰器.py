@@ -1,3 +1,11 @@
+"""
+叠加多个装饰器的加载与运行顺序
+    加载顺序是自下而上(了解)
+    执行顺序是:
+        自上而下: 即 wrapper1 ==>> wrapper2 ==>> wrapper3
+"""
+
+
 def deco1(func1):  # func1 = wrapper2内存地址
     def wrapper1(*args, **kwargs):
         print('开始运行====>deco1.wrapper1')
@@ -39,17 +47,15 @@ def index(x, y):
 
 
 index(1, 2)
-# 结论:
-# 叠加多个装饰器的加载顺序与运行顺序
-# 	加载顺序是自下而上(了解)
-# 	执行顺序是
-# 		自上而下 即 wrapper1 >>> wrapper2 >>> wrapper3
 
-#### ++++ ####
-# 开始运行====>deco1.wrapper1
-# 开始运行====>deco2.wrapper2
-# 开始运行====>deco3.outter3.wrapper2
-# from index 1 2
-# 结束运行====>deco3.outter3.wrapper2
-# 结束运行====>deco2.wrapper2
-# 结束运行====>deco1.wrapper1
+# 运行结果如下
+"""
+开始运行====>deco1.wrapper1
+开始运行====>deco2.wrapper2
+开始运行====>deco3.outter3.wrapper2
+from index 1 2
+结束运行====>deco3.outter3.wrapper2
+结束运行====>deco2.wrapper2
+结束运行====>deco1.wrapper1
+"""
+

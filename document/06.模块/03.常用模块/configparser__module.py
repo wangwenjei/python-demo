@@ -1,4 +1,7 @@
 import configparser
+"""
+ini文件解析器  可以用于定义读取配置文件
+"""
 
 # 将配置文件内容读取到内存
 config = configparser.ConfigParser()

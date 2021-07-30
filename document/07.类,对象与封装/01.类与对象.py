@@ -2,13 +2,15 @@
 类是对象相似数据与功能的集合体,
 所以类中最常见的是变量与函数的定义,但是类体其实可以包含任意其他
 类体代码是在类定义阶段就会立即执行,会产生类的名称空间
+
+为什么要用类: 用来解决对象间代码冗余的问题
 """
 
 
 class Student1:
     stu_school = 'QingHua'
 
-    def func(stu_obj):
+    def func(self):
         pass
 
 
@@ -32,10 +34,10 @@ class Student1:
 class Student2:
     stu_school = 'QingHua'
 
-    def __init__(obj, name, age, gender):  # 接收变量的参数与调用类时传入的参数一一对应
-        obj.stu_name = name
-        obj.stu_age = age
-        obj.stu_gender = gender
+    def __init__(self, name, age, gender):  # 接收变量的参数与调用类时传入的参数一一对应
+        self.stu_name = name
+        self.stu_age = age
+        self.stu_gender = gender
 
     def tell_stu_info(self):
         print('学生信息:名字: %s,年龄: %s,性别: %s' % (
@@ -75,5 +77,6 @@ stu1_obj = Student2('wwj', 18, 'male')
 
 # 通过类调用 (推荐使用 绑定方法 来调用)
 Student2.tell_stu_info(stu1_obj)  # 学生信息:名字: wwj,年龄: 18,性别: male
+
 # 通过绑定方法调用
 stu1_obj.tell_stu_info()  # 学生信息:名字: wwj,年龄: 18,性别: male

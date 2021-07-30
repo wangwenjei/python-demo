@@ -19,14 +19,14 @@ print(json.dumps([1,'aa',True,'哈哈哈'],ensure_ascii=False)) # [1, "aa", true
 
 # 结合with open更简便的将反序列化内容写入磁盘
 res_list = [1,'aa',True,'哈哈哈']
-with open(r'./test.json',mode='wt',encoding='utf-8') as f:
+with open(r'test.json', mode='wt', encoding='utf-8') as f:
     json.dump(res_list,f,ensure_ascii=False)
 
 # 反序列化  反序列化的内容需要是 str类型
 print(json.loads('[1, "aa", true]'))  # [1, 'aa', True]
 
 # 将文件中的内容 反序列化
-with open(r'test.json',mode='rt',encoding='utf-8') as f:
+with open(r'test.json', mode='rt', encoding='utf-8') as f:
     json_res = f.read()
     l_loads = json.loads(json_res)
     print(l_loads) # [1, "aa", true]

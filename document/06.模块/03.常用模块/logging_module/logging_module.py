@@ -6,7 +6,8 @@ logging.basicConfig(
     filename='access.log',
 
     # 日志输出格式
-    format='%(asctime)s - %(name)s - %(levelname)s -%(python_modules)s:  %(message)s',
+    # format='%(asctime)s - %(name)s - %(levelname)s -%(03.常用模块)s:  %(message)s',
+    format='%(asctime)s - %(name)s - %(levelname)s -%(module)s:  %(message)s',
 
     # 时间格式
     datefmt='%Y-%m-%d %H:%M:%S %p',
@@ -19,7 +20,6 @@ logging.basicConfig(
     # debug => 10
     level=10,
 )
-
 logging.debug("调试日志内容 DEBUG")
 logging.info("消息日志内容 INFO")
 logging.warning("警告日志内容 WARNING")

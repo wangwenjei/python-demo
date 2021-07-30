@@ -1,5 +1,9 @@
 import re
 
+"""
+正则表达式
+"""
+
 # re.findall 匹配所有字符
 """
     \w  匹配字母数字及下划线
@@ -28,9 +32,8 @@ print(re.findall('a.b', 'a\nb acdb acb', re.DOTALL))  # ['a\nb', 'acb']
 # 匹配所有包含小数在内的数字
 print(re.findall('\d+\.?\d*', "asdfasdf123as1.13dfa12adsf1asdf3"))  # ['123', '1.13', '12', '1', '3']
 
-
 """
     []  匹配指定字符 []内^ 代表取反
     ()  匹配
 """
-print(re.findall('a[0-9]b','a1b a*b a-b a=b'))  # ['a1b']
+print(re.findall('a[0-9]b', 'a1b a*b a-b a=b'))  # ['a1b']

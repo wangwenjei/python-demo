@@ -1,4 +1,7 @@
 import subprocess
+"""
+用于执行系统命令
+"""
 
 obj = subprocess.Popen('echo 123;ls /root11',  # 执行的系统命令
                        shell=True,

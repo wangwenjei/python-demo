@@ -17,4 +17,5 @@ sys.path.append(BASE_DIR)
 
 # 此时可以导入装饰器
 import hello_python
+
 hello_python.func()
