@@ -22,6 +22,13 @@ print("hello Python")
 	res = f"my name is {x},age is {y}"
 
 
+
+
+
+
+
+
+通常用全大写表示常量,全小写表示变量
 链式赋值
 	x=y=z=10
 
@@ -40,6 +47,13 @@ print("hello Python")
 	x1,*_,x2=x
 
 
+
+
+
+
+
+
+
 可变不可变类型
 	可变类型: 值改变,id不变,证明改的是原值,证明原值是可以改变的
 		list,dict 容器内的值发生了变化,容器本身内存地址并没有改变
@@ -50,6 +64,17 @@ print("hello Python")
 
 显示bool值: True False
 隐式bool值: 0 None 空(空字符串,空列表,空字典) 代表的布尔值为
+
+
+
+
+
+
+
+
+
+
+
 
 逻辑运算符
 	not: 就是吧紧跟其后的那个条件取反,not与紧跟其后的那个条件是一个不可分割的整体
@@ -70,6 +95,13 @@ print("hello Python")
 
 身份运算符
 	is: 判断的是id是否相等
+
+
+
+
+
+
+
 
 
 深浅copy:
@@ -97,6 +129,13 @@ int('0b1011',2) 其他进制转为十进制(此处是二进制转十进制)
 len() 计算字符串,列表,集合,元组长度
 range(len())
 del   删除,且没有返回值
+
+
+
+
+
+
+
 
 字符串: 常用内置方法 len()  strip()   split()
 	a="  hello world  "

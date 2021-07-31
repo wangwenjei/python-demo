@@ -10,7 +10,6 @@
 
 为什么要用继承: 用来解决类与类之间代码冗余的问题
 
-
 Python2 中有经典类与新式类之分
     新式类: 继承了object的子类,以及该子类的子类子子类...
     经典类: 没有继承object的子类,以及该子类的子类子子类...
@@ -57,8 +56,8 @@ class Foo:
     def f3(self):
         print("Foo.f3")
         # 直接调用时,调用的是对象中的函数
-        self.f1()  # obj.f1()  ==>  Bar.f1
-        self.f2() # obj.f2()  ==>  Bar.f2
+        # self.f1()  # obj.f1()  ==>  Bar.f1
+        # self.f2() # obj.f2()  ==>  Bar.f2
 
         # 想要调用当前类中的方法
         Foo.f1(self)  # 方法一: ==> Foo.f1   但是使用该方法的话,调用类需要接收什么参数都必须一一传入
@@ -75,3 +74,4 @@ class Bar(Foo):
 
 obj = Bar()
 obj.f3()
+
