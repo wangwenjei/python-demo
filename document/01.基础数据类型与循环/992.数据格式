@@ -1,0 +1,71 @@
+输入
+name=input("input you name:")
+
+输出
+print("hello Python")
+
+
+
+
+可变不可变类型
+	可变类型: 值改变,id不变,证明改的是原值,证明原值是可以改变的
+		list,dict 容器内的值发生了变化,容器本身内存地址并没有改变
+
+	不可变类型: 值改变,id也变了,证明是产生新的值,压根没有改变原值,证明原值是不可被修改的
+		int,float,str 在Python中都被设计成了不可分割的整体,不能够被改变
+		bool 不可变
+
+显示bool值: True False
+隐式bool值: 0 None 空(空字符串,空列表,空字典) 代表的布尔值为
+
+
+
+
+逻辑运算符
+	not: 就是吧紧跟其后的那个条件取反,not与紧跟其后的那个条件是一个不可分割的整体
+	and: 与,链接左右两个条件,两个条件同时为真则为真
+	or:  或,链接左右两个条件,其中一个条件为真就为真
+
+	优先级
+	not>and>or
+
+
+
+成员运算符
+	in: 
+	"wwj" in "hello wwj"  判断一个子字符串是否存在于一个大字符串中
+	1 in [1,2,3]  判断一个元素是否存在于列表
+	"name" in {"name":"wwj","age":18}  判断key是否存在于字典
+
+	not in
+	"wwj" not in "hello wwj"
+
+身份运算符
+	is: 判断的是id是否相等
+
+
+深浅copy:
+	a=[1,2,3,['a','b']]
+
+	浅copy: 是把原列表第一层的内存地址不加区分完全copy一份给新列表
+		b = a.copy()
+		修改a[3][0]='aaa' 时 b列表也随之更改
+
+	深copy:
+		import copy
+	    b = copy.deepcopy(a) 
+		修改a[3][0]='aaa' 时 b列表也不会更改
+  
+
+ break与continue
+ 	continue 语句跳出本次循环，而break跳出本层循环
+
+
+bin() 十进制转二进制
+oct() 十进制转八进制
+hex() 十进制转十六进制
+int('0b1011',2) 其他进制转为十进制(此处是二进制转十进制)
+
+len() 计算字符串,列表,集合,元组长度
+range(len())
+del   删除,且没有返回值

@@ -56,3 +56,57 @@ print(id(name))  # ==> 140457342711472
 print(type(name))  # ==> <class 'str'>
 # 打印出变量值本身
 print(name)  # ==> wwj
+
+''' 赋值 '''
+# 链式赋值
+x = y = z = 10
+print('x:', x, 'y:', y, 'z:', z)  # ==> x: 10 y: 10 z: 10
+
+# 交叉赋值
+x = 10
+y = 20
+x, y = y, x
+print('x:', x, 'y:', y)  # ==> x: 20 y: 10
+
+# 解压赋值
+x = [1, 2, 3, 4, 5]
+x1, x2, x3 = x[0:3]
+print(x1, x2, x3)  # ==> 1 2 3
+
+# 取前两个值, 其余存到 * _
+x1, x2, *_ = x
+print(x1, x2)  # ==> 1 2
+
+# 取后两个值, 其余存到 * _
+*_, x1, x2 = x
+print(x1, x2)  # ==> 4 5
+
+# 取第一个和最后一个值
+x1, *_, x2 = x
+print(x1, x2)  # ==> 1 5
+
+"""
+格式化输出:
+    1.%s (%s: 接收任意类型的数据, %d: 接收数字类型)
+      值按照位置与%s 一一对应, 少一个不行,多一个不行
+    
+    2.str.format str类型下内置的功能  推荐使用该方法
+    
+    3.5 f  在Python3.5后推出的新功能
+"""
+
+# %s  以字典的形式传值,打破位置的限制
+res = "my name is %(name)s,age is %(age)s" % {"name": 'wwj', "age": 18}
+print(res)  # ==> my name is wwj,age is 18
+
+# 2.format
+res = "my name is {name},age is {age}".format(age=18, name='wwj')
+print(res)  # ==> my name is wwj,age is 18
+
+# 3. f  python 3.5后推出
+# x = input("input you name:")
+# y = input("input you age:")
+x = 'wwj'
+y = 18
+res = f"my name is {x},age is {y}"
+print(res)  # my name is wwj,age is 18

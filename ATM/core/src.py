@@ -264,11 +264,17 @@ def run():
 
         user_instruction = input('输入需要执行的指令').strip()
 
-        if not user_instruction.isdigit():
-            print('==请输入数字指令==')
-            continue
+        # if not user_instruction.isdigit():
+        #     print('==请输入数字指令==')
+        #     continue
+        #
+        # if user_instruction in func_dic:
+        #     func_dic[user_instruction][1]()
+        # else:
+        #     print('请输入正确编号')
 
-        if user_instruction in func_dic:
-            func_dic[user_instruction][1]()
+        if not user_instruction.isdigit() or \
+                user_instruction not in func_dic:
+            print('== 请输入规范的控制指令 ==')
         else:
-            print('请输入正确编号')
+            func_dic[user_instruction][1]()

@@ -67,7 +67,32 @@ print(D.mro())  # 类D以及类D的对象访问属性都是参照该类的mro列
 多继承
 使用多继承应当遵循 Mixins机制
 Mixins机制核心: 就是在多继承背景下尽可能的提升多继承的可读性
+
+的命名方式一般以 Mixin, able, ible 为后缀
 """
 
 
+class Vehicle:  # 交通工具
+    pass
 
+
+class FlyableMixin:
+    def fly(self):
+        """
+            飞行功能相应的代码
+        """
+        print("I am flying")
+
+
+class CivilAircraft(FlyableMixin, Vehicle):  # 民航飞机
+    pass
+
+
+class Helicopter(FlyableMixin, Vehicle):  # 直升飞机
+    pass
+
+
+class Car(Vehicle):  # 汽车
+    pass
+
+# ps: 采用某种规范（如命名规范）来解决具体的问题是python惯用的套路

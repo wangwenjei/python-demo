@@ -17,6 +17,7 @@ Python2 中没有继承任何类,那么会默认继承object类,所以Python3中
 为了通用性可以再父类中手动添加object
 """
 
+
 # 单类继承实现
 class QHPeople:
     school = "QingHua"
@@ -74,4 +75,54 @@ class Bar(Foo):
 
 obj = Bar()
 obj.f3()
+
+"""
+在子类派生的新方法中重用父类的功能
+    方式一: 指名道姓调用某一个类下的函数,不依赖于继承关系
+    方式二: 利用 super()函数 调用父类提供给自己的方法,严格依赖继承关系
+           调用super()会得到一个特殊的对象,该对象会参照发起属性查找的那个类的mro,去当前类的父类中找属性
+"""
+
+
+# 方式一:
+class People:
+    def __init__(self, name, age, sex):
+        self.name = name
+        self.age = age
+        self.sex = sex
+
+    def f1(self):
+        print('hello %s' % self.name)
+
+
+class Teacher(People):
+    def __init__(self, name, age, sex, level, salary):
+        People.__init__(self, name, age, sex)
+        self.level = level
+        self.salary = salary
+
+
+ted_obj = Teacher('www', 18, 'male', 10, 3000)
+print(ted_obj.__dict__)  # ==> {'name': 'www', 'age': 18, 'sex': 'male', 'level': 10, 'salary': 3000}
+
+# 方式二:
+class People:
+    def __init__(self, name, age, sex):
+        self.name = name
+        self.age = age
+        self.sex = sex
+
+    def f1(self):
+        print('hello %s' % self.name)
+
+
+class Teacher(People):
+    def __init__(self, name, age, sex, level, salary):
+        super().__init__(name, age, sex)
+        self.level = level
+        self.salary = salary
+
+print(Teacher.mro())
+ted_obj = Teacher('www', 18, 'male', 10, 3000)
+print(ted_obj.__dict__)  # ==> {'name': 'www', 'age': 18, 'sex': 'male', 'level': 10, 'salary': 3000}
 
