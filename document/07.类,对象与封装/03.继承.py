@@ -27,6 +27,10 @@ class QHPeople:
         self.age = age
         self.sex = sex
 
+    def f1(self):
+        print(self.__dir__())
+        print(self.__dict__)  # ==> {'name': 'wwj', 'age': 18, 'sex': 'male', 'stu_id': 10001}
+
 
 class Student(QHPeople):
 
@@ -42,8 +46,10 @@ class Student(QHPeople):
 # 查看有哪些父类
 print(Student.__bases__)  # (<class '__main__.QHPeople'>,)
 
-stu_obj = Student('wwj', 18, 'male', 10001)  # {'name': 'wwj', 'age': 18, 'sex': 'male', 'stu_id': 10001}
-print(stu_obj.__dict__)
+stu_obj = Student('wwj', 18, 'male', 10001)
+print('stu_obj.__dict__ = ', stu_obj.__dict__)  # ==> {'name': 'wwj', 'age': 18, 'sex': 'male', 'stu_id': 10001}
+
+stu_obj.f1()
 
 
 # 单类继承属性调用
@@ -94,6 +100,10 @@ class People:
     def f1(self):
         print('hello %s' % self.name)
 
+    # def f2(self):
+    #     print(self.__dir__())
+    #     print(self.__dict__)
+
 
 class Teacher(People):
     def __init__(self, name, age, sex, level, salary):
@@ -103,7 +113,9 @@ class Teacher(People):
 
 
 ted_obj = Teacher('www', 18, 'male', 10, 3000)
-print(ted_obj.__dict__)  # ==> {'name': 'www', 'age': 18, 'sex': 'male', 'level': 10, 'salary': 3000}
+print('ted_obj.__dict=', ted_obj.__dict__)  # ==> {'name': 'www', 'age': 18, 'sex': 'male', 'level': 10, 'salary': 3000}
+print('ted_obj.__dir__()=', ted_obj.__dir__())
+
 
 # 方式二:
 class People:
@@ -122,7 +134,7 @@ class Teacher(People):
         self.level = level
         self.salary = salary
 
+
 print(Teacher.mro())
 ted_obj = Teacher('www', 18, 'male', 10, 3000)
 print(ted_obj.__dict__)  # ==> {'name': 'www', 'age': 18, 'sex': 'male', 'level': 10, 'salary': 3000}
-

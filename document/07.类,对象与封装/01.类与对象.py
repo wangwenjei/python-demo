@@ -4,6 +4,8 @@
 类体代码是在类定义阶段就会立即执行,会产生类的名称空间
 
 为什么要用类: 用来解决对象间代码冗余的问题
+
+self: 默认的规范字段,用来接收调用对象,什么对象调用就传入该实例化对象的名称
 """
 
 
@@ -16,15 +18,24 @@ class Student1:
 
 # 属性访问语法
 #  访问数据数据属性
-# print(Student1.stu_school)  # 等同于 print(Student.__dict__['stu_school'])
+print(Student1.stu_school)  # 等同于 print(Student.__dict__['stu_school'])
 
 #  访问函数属性
-# print(Student1.func)
+print(Student1.func)  # ==> <function Student1.func at 0x7f90d061b700>
 
 # 为类添加参数
-# Student.xxx = 'www'
-# print(Student1.__dict__) # dict['xxx'] = 'www'
-
+Student1.xxx = 'www'
+print(Student1.__dict__)
+#  ==>
+"""
+{'__module__': '__main__', 
+ 'stu_school': 'QingHua', 
+ 'func': <function Student1.func at 0x7ff22dad91f0>,
+ '__dict__': <attribute '__dict__' of 'Student1' objects>, 
+ '__weakref__': <attribute '__weakref__' of 'Student1' objects>,
+ '__doc__': None, 
+ 'xxx': 'www'}
+"""
 
 '''
     调用类产生对象
@@ -80,3 +91,6 @@ Student2.tell_stu_info(stu1_obj)  # 学生信息:名字: wwj,年龄: 18,性别: 
 
 # 通过绑定方法调用
 stu1_obj.tell_stu_info()  # 学生信息:名字: wwj,年龄: 18,性别: male
+
+# 打印类的名字
+print(stu1_obj.__class__.__name__)  # ==> Student2

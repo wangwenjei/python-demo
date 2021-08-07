@@ -1,7 +1,7 @@
 """
     用户视图层 主视图
 """
-
+import os
 from core import admin
 from core import student
 from core import teacher
@@ -22,9 +22,11 @@ def run():
 
         choice = input('请输入功能编号:').strip()
 
-        if choice.isdigit() or choice not in func_dic:
-            print('== 请输入规范的指令 ==')
+        if choice not in func_dic:
+            print('== 请输入规范的控制指令 ==')
             continue
+        else:
+            func_dic.get(choice)[1]()
 
 
 run()

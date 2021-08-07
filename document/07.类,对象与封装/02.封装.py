@@ -61,6 +61,4 @@ obj2 = People('wwj')
 obj2.get_name()  # wwj
 obj2.set_name(111)  # 只接收str类型
 
-
-
 print(property)
