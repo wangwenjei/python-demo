@@ -17,6 +17,9 @@
 
     dict.setdefault(key,default=None)  如果key有值则不添加, 没有值则添加键 并将值设为default的值,默认为None
 
+    dict.keys()    以列表返回一个字典所有的键
+    dict.values()  以列表返回字典中的所有值
+
     dict.clear()  清理字典
 """
 
@@ -40,6 +43,10 @@ print(d)  # ==> {'a': 999, 'b': 2, 'c': 3, 'd': 4, 'x': 1, 'y': 2, 'name': 'wwj'
 
 d.clear()
 print(d)  # ==> {}
+
+course_list_msg = {'QH': ['Python', 'Java', 'GO'], 'BD': ['LINUX', 'Python']}
+a = list(course_list_msg.keys())
+print(list(a))   # ==> ['QH', 'BD']
 
 """
 集合类型: set

@@ -45,7 +45,24 @@ class Admin(Base):
         school_obj = School(sch_name, sch_addr)
         school_obj.save()
 
+    def create_course(self, school_obj, course_name):
+        # 调用课程类，实例化创建课程
+        course_obj = Course(course_name=course_name)
+        course_obj.save()
+
+        # 2.获取当前学校对象，并将课程添加到课程列表中
+        school_obj.course_list.append(course_name)
+
+        # 3.更新学校数据
+        school_obj.save()
+
     def create_teahcer(self, teacher_name, teacher_pwd):
+        """
+        内部调用老师类实例化得到对象并保存
+        :param teacher_name: 教师账户名
+        :param teacher_pwd: 教师账户密码
+        :return:
+        """
         teacher_obj = Tearch(teacher_name=teacher_name,
                              teacher_pwd=teacher_pwd)
         teacher_obj.save()
@@ -60,13 +77,52 @@ class School(Base):
         """
         self.name = name
         self.addr = addr
+        # 存储校区下创建的课程
+        self.course_list = []
 
 
-class Course:
-    pass
+class Student(Base):
+    def __init__(self, stu_uaername, stu_password):
+        """
+
+        :param stu_uaername:
+        :param stu_password:
+        """
+        self.name = stu_uaername
+        self.pwd = stu_password
+        # 每个学生只能有一个校区
+        self.school = None
+        # 一个学生可以选择多门课程
+        self.course_list = []
+        # 学生课程分数
+        self.score_dict = {}  # {"course_name": 0}
+
+    def add_school(self, school_name):
+        self.school = school_name
+        self.save()
+
+    def add_course(self, course_name):
+        # 学生课程列表添加课程
+        self.course_list.append(course_name)
+        # 为课程设置初始分数,默认为0
+        self.score_dict[course_name] = 0
+        self.save()
+
+
+class Course(Base):
+    def __init__(self, course_name):
+        self.name = course_name
 
 
 class Tearch(Base):
     def __init__(self, teacher_name, teacher_pwd):
-        self.teacher_name = teacher_name
-        self.teacher_pwd = teacher_pwd
+        self.name = teacher_name
+        self.pwd = teacher_pwd
+        self.teacher_course_dict = {}  # {school_name:[course1,course2]}
+
+    def add_course(self, school_name, course_name):
+        self.teacher_course_dict[school_name].append(course_name)
+
+    def get_student(self,):
+        pass
+

@@ -1,8 +1,8 @@
 """
     管理员视图层
 """
-import pickle
 from interface import admin_interface
+from interface import common_interface
 from lib import common
 
 admin_info = {
@@ -45,10 +45,11 @@ def login():
         username = input('登录账户:').strip()
         passwd = input('登录密码:').strip()
 
-        falg, msg = admin_interface.admin_login_interface(username=username,
-                                                          password=passwd)
+        flag, msg = common_interface.login_interface(login_name=username,
+                                                     login_pwd=passwd,
+                                                     login_type='admin')
 
-        if falg:
+        if flag:
             print(msg)
             admin_info['user'] = username
             break
@@ -81,14 +82,48 @@ def create_school():
 def create_course():
     while True:
         # 选择不同的校区,创建不同的课程
-        pass
+        flag, school_list_or_msg = common_interface.get_all_school_interface()
+
+        if not flag:
+            print(school_list_or_msg)
+            break
+
+        for index, school_name in enumerate(school_list_or_msg):
+            print(f'编号: {index}    学校名: {school_name}')
+
+        choice = input('请输入学校编号:').strip()
+
+        if not choice.isdigit():
+            print('请输入合法指令')
+            continue
+
+        choice = int(choice)
+        if choice not in range(len(school_list_or_msg)):
+            print('请输入正确编号')
+            continue
+
+        # 获取学校名称
+        school_name = school_list_or_msg[choice]
+
+        course_name = input('请输入创建课程名称:').strip()
+
+        flag, msg = admin_interface.create_course_interface(school_name=school_name,
+                                                            course_name=course_name,
+                                                            login_name=admin_info.get('user'))
+
+        if flag:
+            print(msg)
+            break
+        else:
+            print(msg)
+            break
 
 
 # 注册讲师账户
 @common.auth('admin')
 def create_teacher():
     while True:
-        tea_name = input('请输出教师姓名').strip()
+        tea_name = input('请输入注册教师账户名').strip()
 
         falg, msg = admin_interface.create_teacher_interface(teacher_name=tea_name,
                                                              login_name=admin_info.get('user'))
@@ -121,7 +156,6 @@ def admin_view():
 
         if choice not in func_dic:
             print('== 请输入规范的控制指令 ==')
-            continue
         else:
             func_dic[choice][1]()
 

@@ -1,7 +1,7 @@
 class Base:
     @classmethod
     def select(cls, username):
-        pass
+        print(username)
 
     def save(self):
         print(self.__dir__())
@@ -16,3 +16,4 @@ class Admin(Base):
 
 obj = Admin('wwj', 123)
 obj.save()
+obj.select(username='www')
