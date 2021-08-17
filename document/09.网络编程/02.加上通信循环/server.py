@@ -1,5 +1,10 @@
 import socket
 
+"""
+    升级为server与client 一次链接建立后可以发多条消息
+"""
+
+
 # 1.获取到一个基于TCP连接的对象
 phone = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -14,10 +19,16 @@ conn, client_addr = phone.accept()
 
 # 5. 收发消息
 while True:
-    data = conn.recv(1024)
-    if len(data) == 0: break
-    print('来自客户端发送的消息:', data.decode('utf-8'))
-    conn.send(data.upper())
+    try:
+        data = conn.recv(1024)
+        if len(data) == 0:
+            # Unix系统h中,一旦data收到的是空,意味着是一种异常的行为: 客户端非法断开了链接
+            break
+        print('来自客户端发送的消息:', data.decode('utf-8'))
+        conn.send(data.upper())
+    except Exception:
+        # 针对Windows系统
+        break
 
 # 6. 关闭conn连接
 conn.close()
