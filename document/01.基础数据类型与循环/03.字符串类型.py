@@ -28,6 +28,11 @@ int类型可以被转为str类型,但str类型不能被转为int类型
  
     str.replace()   替换字符串,参数依次为,被替换的字符串,要替换成的字符串,替换次数
     str.isdigit()   判断字符串是否由数字组成   返回 True False  
+    
+    str.encode('utf-8')   将某一编码类型的字符串修改为Byte类型
+    str.decode('utf-8')   将Bytel类型数据转码为原编码类型的数据
+
+bytes(str,encoding='utf-8')  将某一编码类型的字符串修改为Byte类型
 """
 
 age = 18
@@ -68,3 +73,12 @@ print(':'.join(x))  # ==> name:wwj
 print(a.replace('hello', 'HELLO'))  # ==> HELLO world
 
 print(a.isdigit())  # ==> False
+
+aa = 'aa'.encode('utf-8')
+print(aa, type(aa))  # ==> b'aa' <class 'bytes'>
+
+bb = aa.decode('utf-8')
+print(bb, type(bb))  # ==> aa <class 'str'>
+
+a = "hello"
+print(bytes(a, encoding='utf-8'))  # ==> b'hello'

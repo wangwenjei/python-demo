@@ -8,7 +8,7 @@ import socket
 phone = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # 2.服务端允许连接的网络
-phone.bind(('127.0.0.1', 8085))  # 绑定服务端
+phone.bind(('127.0.0.1', 8086))  # 绑定服务端
 
 # 3. 监听 5 指的是半连接池的大小
 phone.listen(5)

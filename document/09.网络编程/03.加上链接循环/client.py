@@ -4,7 +4,7 @@ import socket
 phone = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 # 连接服务端,服务端的IP+端口
-phone.connect(('127.0.0.1', 8085))
+phone.connect(('127.0.0.1', 8086))
 
 # 收发消息
 while True:
