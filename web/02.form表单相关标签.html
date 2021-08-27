@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> 注册页面 </h1>
+
+<form action="http://127.0.0.1:5000/index" method="post">
+    <p>
+        <label for="id_username"> username: <input type="text" id="id_username" name="username"> </label>
+    </p>
+    <p>
+        <label for="id_password"> password: <input type="password" id="id_password" name="password"></label>
+    </p>
+    <p>
+        <label for="id_date"> birthday: <input type="date" id="id_date" name="birthday"></label>
+    </p>
+    <p>
+        <label for="">
+            gender:
+            <input type="radio" name="gender" checked value="male"> 男
+            <input type="radio" name="gender" value="female"> 女
+            <input type="radio" name="gender" value="others"> 其他
+        </label>
+    </p>
+    <p>
+        <label for="">
+            hobby:
+            <input type="checkbox" name="hobby" value="read book"> read book
+            <input type="checkbox" name="hobby" checked value="listen music"> listen music
+            <input type="checkbox" name="hobby" checked value="Python"> Python
+            <input type="checkbox" name="hobby" value="Go"> Go
+        </label>
+    </p>
+
+    <p>
+        <label for="">
+            province:
+            <select name="" id="id_province">
+                <option value="北京" name="province">北京</option>
+                <option value="上海" name="province" selected>上海</option>
+                <option value="广州" name="province">广州</option>
+            </select>
+        </label>
+    </p>
+
+    <p>
+        <label for="">
+            breakfast:
+            <select name="" id="id_breakfast" multiple>
+                <option value="">小笼包</option>
+                <option value="" selected>叉烧包</option>
+                <option value="" selected>豆沙包</option>
+                <option value="">鲜肉包</option>
+            </select>
+        </label>
+    </p>
+    <p>
+        <label for="id_file">
+            <input name="my_file" type="file" id="id_file" multiple>
+        </label>
+    </p>
+    <p>
+        <label for="">
+            自我介绍: <textarea name="my_info" id="" cols="30" rows="1"></textarea>
+        </label>
+    </p>
+
+    <input type="submit" value="注册">
+    <input type="reset" value="重置">
+
+</form>
+
+</body>
+</html>

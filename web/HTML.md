@@ -58,7 +58,7 @@ head内常用标签
 <script></script> 内部用来书写JS代码
 <script src="xxx.js"></script>  引用外部JS代码
 
-<meta>
+<meta>  定义网页源信息
 
 
 ```
@@ -102,8 +102,8 @@ body内常用标签
 
 常用标签
 ```angular2html
-<div></div>   用于划定区域
-<span></span> 可以用于书写普通文本
+<div></div>   网页初期用于划定区域
+<span></span> 网页初期划定文本区域
 <img src="" alt="" title="" height="" width="">  图片标签  
             src: 图片路径
             alt: 当图片加载不出来时,给图片的描述信息
@@ -159,4 +159,102 @@ body内常用标签
         <dt>标题一</dt>
         <dd>内容一</dd>
     </dl>
+```
+
+表格标签
+```angular2html
+<table>
+    <thead>  表头(字段信息)
+        <tr>  一个 tr 就表示一行
+            <th> username </th>  加粗文本
+            <th> password </th>  正常文本
+        </tr>
+    </thead>  
+    <tbody> 表单(数据信息)
+        <tr>
+            <td> Jason </td>
+            <td> 123 </td>
+        </tr>
+    
+    </tbody>  
+</table>
+
+table标签属性
+    border="1"  外边框
+    cellpadding="5"  内边距
+    cellspacing="5"  外边距
+
+td/th 标签属性
+    rowspan="2"  竖直占据两行
+    colspan="2"  水平占据两列
+```
+
+form标签
+```angular2html
+<form action="" method=""></form>  在该form标签内部书写的获得的用户数据都会被form标签提交到后端
+
+action:  控制数据提交的后端路径(提交数据到那个服务端)
+    1. 什么都不写 默认就是朝当前页面所在URL提交数据
+    2. 写全路径 http://www.baidu.com 朝百度服务端提交数据
+    3. 只写路径后缀 action="/index/"  会自动识别出当前服务端的IP端口拼接到后面
+        host:port/index/
+method  设置form表单提交数据的方式,默认是get请求
+
+表单, 通过ID值联动
+<label for="id_username">
+    username: <input type="text" id="id_username"> 
+</label>
+
+type属性:
+    text: 普通文本格式
+    password: 密文
+    date: 日期
+    submit: 触发form表单提交数据
+    button: 初始无任何状态的按钮,本身不具备任何功能,但可以自定义任何功能
+    reset:  重置form表单内容
+    radio:  单选
+        默认选中要加 checked='checked'
+        当标签的属性名和属性值一样的时候可以简写 <input type="radio" name="gender" checked> 男
+    checkbox: 多选
+    file: 上传文件
+        multiple 可以上传多个文件
+    hidden: 隐藏当前input框
+
+disable属性: 禁用
+readonly属性: 只读
+
+针对用户输入的标签,如果加了value 那就是默认值
+选择标签和选项属性需要设置value值,否则后端接收数据会接收不到
+        
+<select name="" id="id_breakfast" multiple>
+    <option value="" selected>上海</option>
+</select>
+select标签:  默认单选, 可以加multiple变为多选
+    selected 默认选中
+        
+<textarea name="" id="" cols="30" rows="10"></textarea>
+textarea标签: 用来获取大段文本
+
+# 能够触发form表单提交数据的按钮有哪些
+    1. <input type="submit" value="注册">
+    2. <button> 注册 </button>
+
+# 所有获取用户输入的标签 都应该有 name 属性
+    name就类似于字典的key
+    用户的数据就类似于字典的value
+```
+
+form表单提交数据
+```angular2html
+form 表单默认提交数据的方式是GET请求, 数据是直接放在URL后面
+http://127.0.0.1:5000/index?username=Jason&password=123&birthday=&gender=on&hobby=on&hobby=on
+
+<form action="http://127.0.0.1:5000/index" method="post" enctype="multipart/form-data">
+form提交文件需要注意
+    1. 必须是post请求
+    2. 必须要有该属性 enctype="multipart/form-data"
+        enctype 类似于数据提交的编码格式 
+            默认 urlencoded 只能提交普通的文本数据
+            form-data 既支持提交文本数据,也支持提交文件数据
+
 ```
