@@ -39,8 +39,8 @@ def ma_range(start, stop, step=1):
 # print(g.__iter__().__next__())  # ==> 3
 # print(g.__iter__().__next__())  # ==> 抛出异常StopIteration
 
-# for i in ma_range(1, 5, 2):
-#     print(i)
+for i in ma_range(1, 5, 2):
+    print(i)  # ==> 1  3
 
 
 # 表达式形式
@@ -57,4 +57,4 @@ g.send(None)  # 道哥 alex 准备吃东西了....  =====> 将生成器挂起
 g.send('热包子')  # 道哥 alex 吃了 热包子    =====> 将热包子传给 yield
 g.send('烧麦')  # 道哥 alex 吃了 烧麦       =====> 将烧麦传给 yield
 g.close()  # ====> 关闭后就无法再传值
-g.send('大棒骨')  # =====> 抛出异常 StopIteration
+# g.send('大棒骨')  # =====> 抛出异常 StopIteration

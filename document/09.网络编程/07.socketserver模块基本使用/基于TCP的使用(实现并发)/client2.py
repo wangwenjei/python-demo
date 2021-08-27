@@ -1,4 +1,5 @@
 import socket
+import time
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(('127.0.0.1', 8811))
@@ -9,6 +10,7 @@ while True:
     client.send(msg.encode('utf-8'))
 
     data = client.recv(1024)
+    time.sleep(9)
     print(data.decode('utf-8'))
 
 client.close()

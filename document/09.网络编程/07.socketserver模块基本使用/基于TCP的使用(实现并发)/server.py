@@ -24,7 +24,7 @@ while True:
 
 
 class MyRequestHandle(socketserver.BaseRequestHandler):
-    def handle(self) -> None:
+    def handle(self) -> None:  # 函数名必须要叫 handle
         """
         print(self.request)  # 如果是TCP协议,self.request 等同于 conn
         print(self.client_address)
@@ -45,7 +45,7 @@ class MyRequestHandle(socketserver.BaseRequestHandler):
 # ThreadingTCPServer 线程
 # 第一件事: 循环的从半连接池中取出链接请求,与其建立双向链接请求,拿到链接对象
 s = socketserver.ThreadingTCPServer(('127.0.0.1', 8811), MyRequestHandle)
-s.serve_forever()
+s.serveforever()
 # 等同于
 # while True:
 #     conn, client_addr = server.accept()

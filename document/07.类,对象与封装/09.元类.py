@@ -126,7 +126,6 @@ class People3(object, metaclass=Mymeat):
 
 
 # 四 自定义元类控制类的调用,类的对象的产生
-
 # 模板
 class Mymeat(type):
     def __call__(self, *args, **kwargs):
