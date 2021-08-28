@@ -8,6 +8,25 @@
         #d1 {  /*   找到id是d1的标签 将文本颜色改为 greenyellow   */
           color: greenyellow;
         }
+
+        /*   类选择器   */
+        .c1 {  /*  找到class值包含c1的标签  */
+            color: red;
+        }
+
+        /*   元素/标签选择器   */
+        span {  /*  找到所有的span标签  */
+            color: aqua;
+        }
+
+        /*   通用选择器   */
+        * {  /*  将HTML页面上所有的标签全部找到  */
+            color: burlywood;
+        }
+
+
+
+
     </style>
 
 </head>
@@ -15,7 +34,7 @@
 
     <div id="d1">
         div
-        <p> div内的p </p>
+        <p class="c1"> div内的p </p>
         <span> div内的span </span>
     </div>
 

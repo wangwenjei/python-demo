@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+            /*  后代选择器  */
+            /*div span {  !* div 内部所有的span变为红色 *!*/
+            /*    color: red;*/
+            /*}*/
+
+            /*  儿子选择器  */
+            /*div > span { !* div 内部儿子span变为 burlywood *!*/
+            /*    color: burlywood;*/
+            /*}*/
+
+            /*  毗邻选择器  */
+            /*div + span {  !* 同级别禁挨着的下面的第一个标签 *!*/
+            /*    color: aqua;*/
+            /*}*/
+
+            /*  弟弟选择器  */
+            div ~ span { /* 同级别下面所有的span */
+                color: aquamarine;
+            }
+    </style>
+
+</head>
+<body>
+    <span>span1</span>
+    <span>span2</span>
+
+    <div>
+        <p> div p</p>
+        <p> div p
+            <span>
+                div p span
+            </span>
+        </p>
+        <span>div span</span>
+        <span>div span</span>
+    </div>
+
+    <span>span</span>
+    <p>p11</p>
+    <span>span</span>
+
+</body>
+</html>
