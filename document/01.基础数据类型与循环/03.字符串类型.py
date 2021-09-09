@@ -31,6 +31,8 @@ int类型可以被转为str类型,但str类型不能被转为int类型
     
     str.encode('utf-8')   将某一编码类型的字符串修改为Byte类型
     str.decode('utf-8')   将Bytel类型数据转码为原编码类型的数据
+    
+    str.index('c',5)   获取字符串序列位置,可以定义查询的初始位置从哪个下标开始 
 
 bytes(str,encoding='utf-8')  将某一编码类型的字符串修改为Byte类型
 """
@@ -82,3 +84,5 @@ print(bb, type(bb))  # ==> aa <class 'str'>
 
 a = "hello"
 print(bytes(a, encoding='utf-8'))  # ==> b'hello'
+
+print('abcdabcd'.index('c',5))  # ==> 6

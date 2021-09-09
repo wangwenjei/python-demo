@@ -1,0 +1,146 @@
+/* 这是首页样式 */
+
+/* 通用样式 */
+body {
+    margin: 0;
+    background-color: #eeeeee;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+/* 左侧样式 */
+.blog-left {
+    background-color: #4e4e4e;
+    float: left;
+    position: fixed;
+    width: 20%;
+    height: 100%;
+}
+
+.blog-icon {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;  /* 画圆 */
+    border: 5px solid white; /* 边框5px 实线 白边*/
+    overflow: hidden;  /* 溢出不显示 */
+    margin: 20px auto;  /* 顶部20px 水平居中 */
+}
+
+.blog-icon img {
+    max-width: 100%;  /* 让头像百分百显示 */
+}
+
+.blog-title,.blog-info {
+    color: darkgray;
+    font-size: 18px;
+    text-align: center; /* 文本对齐方式 */
+}
+
+.blog-link, .blog-tag {
+    margin-top: 50px;
+}
+
+.blog-link ul, .blog-tag ul {
+    text-align: center;
+}
+
+.blog-link ul li a, .blog-tag ul li a {
+    font-size: 18px;
+    color: darkgray;
+}
+
+.blog-link a:hover, .blog-tag a:hover {
+    color: #eeeeee;
+    font-size: 24px;
+}
+
+/* 右侧样式 */
+.blog-right {
+    float: right;
+    width: 80%;
+    height: 100%;
+}
+
+.article {
+    background-color: white;
+    margin: 20px 50px 10px 10px;
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.5);  /* 盒子阴影 */
+}
+
+.article-title {
+    border-left: 5px solid red;  /* 加左边框 5px 实线 红色 */
+}
+
+.title {
+    font-size: 36px;
+    margin: 10px;
+}
+
+.date {
+    float: right;
+    margin: 20px 20px;
+}
+
+.article-body {
+    padding-left: 1em;
+    font-weight: bold;  /* 加粗 */
+    border-bottom: 1px solid black;
+}
+
+.article-bottom {
+    font-size: 18px;
+    padding: 10px 15px;
+}
+
+.article-bottom span {
+    margin-right: 10px;
+}
+
+.blog-toolbar {
+    background-color: rgba(0,0,0,0.5);  /* 透明度 */
+    /*background-color: red;  !* 透明度 *!*/
+    width: 40px;
+    height: 300px;
+    position: fixed;  /* 绝对定位 */
+    top: 45%;
+    right: 3px;
+
+}
+
+.blog-toolbar-icon img{
+    position: absolute;
+    bottom: 3px;
+    left: 50%;  /* 水平居中 但因为图片本身大小问题会有位差 */
+    transform: translate(-50%);  /* 解决水平居中因为图片本身大小导致位差的问题  第二个参数可以调整Y轴 */
+}
+
+
+.blog-toolbar-icon a{
+    display: inline-block;  /* 标签同时具备块级和行内标签的特性 */
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    bottom: 3px;
+    background-image:url("https://i1.mifile.cn/f/i/2018/home/totop.png");
+    left: 50%;  /* 水平居中 但因为图片本身大小问题会有位差 */
+    transform: translate(-50%);  /* 解决水平居中因为图片本身大小导致位差的问题  第二个参数可以调整Y轴 */
+    /*background-repeat:no-repeat;  !* 平铺方式: 不平铺 *!*/
+}
+
+
+.blog-toolbar-icon a:hover{
+    display: inline-block;  /* 标签同时具备块级和行内标签的特性 */
+    width: 30px;
+     position: absolute;
+    bottom: 3px;
+    background-image:url("https://i1.mifile.cn/f/i/2018/home/totop_hover.png");
+    left: 50%;  /* 水平居中 但因为图片本身大小问题会有位差 */
+    transform: translate(-50%);  /* 解决水平居中因为图片本身大小导致位差的问题  第二个参数可以调整Y轴 */
+}

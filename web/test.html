@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<button onclick="func1()">点我</button>
+<button id="d1">点我</button>
+
+<script>
+    // 第一种绑定事件的方式
+    function func1() {
+        alert(111)
+    }
+    // 第二种
+    let btnEle = document.getElementById('d1');
+    btnEle.onclick = function () {
+        alert(222)
+    }
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+      [username] { /* 将所有含有属性名username的标签背景色改为红色 */
+        background-color: red;
+      }
+
+      [username = 'Jason'] {  /* 找到所有属性名是username并且属性值是Jason的标签 */
+          background-color: aqua;
+      }
+
+      input[username='Tom'] {  /* 找到所有属性名是username并且属性值是Tom的input标签 */
+          background-color: khaki;
+      }
+
+    </style>
+
+    <style>
+        div {
+            border-width: 3px;
+            /*border-style: dotted;*/
+            border-style: solid;
+            /*border-style: dashed;*/
+            border-color: red;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<input type="text"username>
+<input type="text"username="Jason">
+<input type="text"username="Tom">
+
+<div>
+    sss
+</div>
+
+
+<div style="height: 100px;width: 200px;background-color: red;position: relative;left: 500px"></div>
+<div style="height: 100px;width: 200px;background-color: greenyellow"></div>
+
+<div style="height: 100px;width: 200px;background-color: red;"></div>
+<div style="height: 100px;width: 200px;background-color: greenyellow;position: absolute;left: 500px"></div>
+<!--当没有父标签做到位 就参照与body-->
+<div style="height: 100px;width: 200px;background-color: blue;"></div>
+
+<div style="height: 100px;width: 200px;background-color: red;"></div>
+<div style="height: 100px;width: 200px;background-color: greenyellow;position: fixed;bottom: 10px;right: 20px"></div>
+<div style="height: 100px;width: 200px;background-color: blue;"></div>
+
+
+
+
+
+</body>
+</html>
