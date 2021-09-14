@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+        .cover {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(128, 128, 128, 0.4);
+            z-index: 99;
+        }
+
+        .modal {
+            width: 400px;
+            height: 300px;
+            background-color: white;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-left: -200px;
+            margin-top: -150px;
+            z-index: 100;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+
+</head>
+<body>
+
+<div>
+    <input id="d1" type="button" value="弹弹弹">
+</div>
+
+<div id="d2" class="cover hide"></div>
+<div id="d3" class="modal hide">
+    <form>
+        <p>
+            <label for="">username: <input type="text"> </label>
+        </p>
+        <p>
+            <label for="">password: <input type="password"> </label>
+        </p>
+        <input id="id_login" type="button" value="登录">
+        <input id="id_release" type="button" value="取消">
+    </form>
+
+</div>
+
+<script>
+    $('#d1').click(function () {
+        let $coverEle = $('.cover');
+        let $modalEle = $('.modal');
+
+        $coverEle.removeClass('hide')
+        $modalEle.removeClass('hide')
+
+    })
+
+    /* 原生JS实现*/
+    // $('#id_release').click(function () {
+    //     let coverEle = document.getElementById('d2')
+    //     let modalEle = document.getElementById('d3')
+    //
+    //     coverEle.classList.add('hide')
+    //     modalEle.classList.add('hide')
+    // })
+
+    /* jQuery实现 */
+    $('#id_release').click(function () {
+        $('#d2').addClass('hide')
+        $('#d3').addClass('hide')
+    })
+
+
+</script>
+
+</body>
+</html>

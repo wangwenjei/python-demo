@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style>
+      body {
+        background-color: #eeeeee;
+      }
+      .left {
+        width: 20%;
+        height: 100%;
+        background-color: darkgray;
+        float: left;  /* 左浮动 */
+        position: fixed; /* 固定定位 */
+      }
+
+      .title {
+        font-size: 24px;
+        color: darkblue;
+        margin-bottom: 15px;
+      }
+
+      .items {
+        color: white;
+        text-align: center;
+      }
+
+      .hide {
+        display: none;
+      }
+
+    </style>
+
+</head>
+<body>
+
+<div class="left">
+  <div class="menu">
+    <div class="title"> 菜单一
+        <div class="items">111</div>
+        <div class="items">222</div>
+        <div class="items">333</div>
+    </div>
+
+    <div class="title"> 菜单二
+        <div class="items hide">111</div>
+        <div class="items hide">222</div>
+        <div class="items hide">333</div>
+    </div>
+
+    <div class="title"> 菜单三
+        <div class="items hide">111</div>
+        <div class="items hide">222</div>
+        <div class="items hide">333</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+  $('.title').click(function (){
+      // console.log(this)
+      // $('.items').addClass('hide')
+      // $(this).children().removeClass('hide')
+
+      /* 一行实现 */
+      $(this).children().removeClass('hide').parent().siblings().children().addClass('hide')
+
+  })
+
+</script>
+
+</body>
+</html>

@@ -11,8 +11,8 @@ a {
 }
 
 ul {
-    list-style-type: none;
-    padding-left: 0;
+    list-style-type: none;  /*设置ul无样式*/
+    padding-left: 0; /*左内边距为0*/
 }
 
 /* 左侧样式 */
