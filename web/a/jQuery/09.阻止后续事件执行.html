@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!-- 方法一: 直接在标签内写 onclick="return false" -->
+<!--<form>-->
+<!--    <span id="d1" style="color: red"></span>-->
+<!--    <input type="submit" onclick="return false" id="d2">-->
+<!--</form>-->
+
+<form>
+    <span id="d11" style="color: red"></span>
+    <input type="submit"  id="d22">
+</form>
+
+
+<script>
+
+    // 方法二, 直接写return false
+    $('#d22').click(function () {
+        $('#d11').text('aa')
+
+        return false
+
+    })
+
+
+    // 方法三, 调用 preventDefault() 方法, 推荐使用方法二
+    // $('#d22').click(function (e) {
+    //     $('#d11').text('aa')
+    //
+    //     e.preventDefault()
+    // })
+
+
+</script>
+</body>
+</html>

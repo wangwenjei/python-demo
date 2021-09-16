@@ -62,15 +62,21 @@
 
 <script>
 
-  $('.title').click(function (){
-      // console.log(this)
-      // $('.items').addClass('hide')
-      // $(this).children().removeClass('hide')
+    $('.title').click(function (){
 
-      /* 一行实现 */
-      $(this).children().removeClass('hide').parent().siblings().children().addClass('hide')
+          /*  实现思路:
+                  1. 先为清除所有二级菜单显示样式(添加hide样式)
+                  2. 为选中的一级标签下的二级标签去除hide样式
+          */
 
-  })
+          // console.log(this)
+          // $('.items').addClass('hide')
+          // $(this).children().removeClass('hide')
+
+          /* 一行实现 */
+          $(this).children().removeClass('hide').parent().siblings().children().addClass('hide')
+
+    })
 
 </script>
 

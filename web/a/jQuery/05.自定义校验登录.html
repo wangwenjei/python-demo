@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div>
+    <form id="id_form">
+        <p>
+            <label for="id_username"> username: <input type="text" id="id_username"> </label>
+            <span id="id_username_none" style="color: red"></span>
+        </p>
+
+        <p>
+            <label for="id_password"> password: <input type="password" id="id_password"></label>
+            <span id="id_password_none" style="color: red"></span>
+        </p>
+    </form>
+
+    <button id="d1"> 提交</button>
+
+
+</div>
+
+
+<script>
+
+    $('#d1').click(function () {
+        let isSubmit = true;
+
+        //校验输入框为空则提示错误信息,并修改isSubmit为false
+        if (!$('#id_username').val()) {
+            $('#id_username_none').text('用户名不能为空')
+            isSubmit = false;
+        }
+        if (!$('#id_password').val()) {
+            $('#id_password_none').text('密码不能为空')
+            isSubmit = false;
+        }
+
+        // 判断条件为真才提交表单
+        if (isSubmit === true) {
+            $('#id_form').submit()
+        }
+    })
+
+    // 焦点事件,当输入框有焦点则清除该提示框的错误提示信息
+    $('input').focus(function () {
+        $(this).parent().next().text('')
+    })
+
+
+</script>
+
+</body>
+</html>

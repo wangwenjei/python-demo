@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        #d1 {
+          width: 150px;
+          height: 150px;
+          background-color: darkorange;
+        }
+    </style>
+</head>
+<body>
+
+<button id="d1"> 点我,有你好看! </button>
+
+<script>
+
+    // console.log(this)  // this指代是当前被操作的标签对象
+    // $(this).clone().insertAfter($('body'))  // clone默认情况下只克隆html和css,不克隆事件;括号内加true即可克隆事件
+
+    // jQuery事件写法一
+    // $('#d1').click(function (){
+    //   $(this).clone(true).insertAfter($('body'))
+    // })
+
+    // jQuery事件写法二
+    $('#d1').on('click', function () {
+        $(this).clone(true).insertAfter($('body'))
+    })
+
+</script>
+
+</body>
+</html>

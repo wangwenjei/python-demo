@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<p id="d1">点我,有你好看</p>
+
+<script>
+
+    //  hover事件内部实际上存在两个事件,一个是当鼠标悬浮上,一个是当鼠标移开时
+
+    // $('#d1').hover(function () {  //鼠标悬浮 + 鼠标移开
+    //     alert(123)
+    // })
+
+    $('#d1').hover(
+        function () {
+            alert('鼠标悬浮啦')
+        },
+        function () {
+            alert('鼠标移开啦')
+        }
+    )
+
+</script>
+
+</body>
+</html>
