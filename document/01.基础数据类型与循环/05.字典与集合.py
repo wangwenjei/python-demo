@@ -49,7 +49,7 @@ print(d)  # ==> {}
 
 course_list_msg = {'QH': ['Python', 'Java', 'GO'], 'BD': ['LINUX', 'Python']}
 a = list(course_list_msg.keys())
-print(list(a))   # ==> ['QH', 'BD']
+print(a)   # ==> ['QH', 'BD']
 
 a1 = {1: 'a', 2: 'b', 3: 'c'}
 print(a1.items())  # ==> dict_items([(1, 'a'), (2, 'b'), (3, 'c')])

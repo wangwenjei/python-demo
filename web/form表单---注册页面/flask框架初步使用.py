@@ -7,10 +7,10 @@ app = Flask(__name__)
 @app.route('/index/', methods=['GET', 'POST'])
 def index():
     print(request.form)  # 获取form表单提交过来的非文件数据
-    # ImmutableMultiDict([('username', 'Jason'), ('password', '123'), ('birthday', '2021-08-27'), ('gender', 'male'), ('hobby', 'listen music'), ('hobby', 'Python'), ('my_file', '1.png'), ('my_info', 'hahaha')])
+    # ImmutableMultiDict([('username', 'Jason'), ('password', '123'), ('birthday', '2021-08-27'), ('gender', 'male'), ('hobby', 'listen music'), ('hobby', 'Python'), ('my_file', 'img_1.png'), ('my_info', 'hahaha')])
 
     print(request.files)  # 获取文件数据
-    # ImmutableMultiDict([('my_file', <FileStorage: '1.png' ('image/png')>)])
+    # ImmutableMultiDict([('my_file', <FileStorage: 'img_1.png' ('image/png')>)])
 
     file_obj = request.files.get('my_file')
     file_obj.save(file_obj.name)

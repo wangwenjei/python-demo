@@ -20,3 +20,24 @@ for key, value in a1.items():
 
 for i in a1.items():
     print(i)
+
+a = 'hello world'
+print(a.replace('ll', 'LL'))
+
+print('abcdabcd'.index('c', 3))
+
+course_list_msg = {'QH': ['Python', 'Java', 'GO'], 'BD': ['LINUX', 'Python']}
+a = list(course_list_msg.keys())
+print(a, type(a))
+print(a)  # ==> ['QH', 'BD']
+
+c = [1, 2, 3]
+print(list(c))
+
+
+with open('document/02.文件操作/file/write.txt', mode='rt', encoding='utf-8') as f:
+    res = f.readlines()
+    old_num=''
+    for i in range(len(res)):
+        old_num += res[i].strip('\n') + "+"
+    print(old_num.strip('+'))
