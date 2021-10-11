@@ -23,20 +23,22 @@ os.remove('./add.txt')
 os.environ['aaa'] = '111'
 print(os.environ['aaa'])  # 111
 
-# 获取文件路径  /Users/python/python-demo/03.常用模块
+# 获取文件路径
 print(os.path.dirname('/Users/python/python-demo/03.常用模块/os_pathlib_module.py'))
+# ===>  /Users/python/python-demo/03.常用模块
 
-# 获取最后一级文件名  os_pathlib_module.py
+# 获取最后一级文件名
 print(os.path.basename('/Users/python/python-demo/03.常用模块/os_pathlib_module.py'))
+# ===> os_pathlib_module.py
 
 # 只能判断文件是否存在
 print(os.path.isfile(r'os_pathlib_module.py'))  # True
 
-# 判断文件 或 文件夹是否存在
-print(os.path.exists(r'logging_module'))  # True
-
 # 判断文件夹是否存在
 print(os.path.isdir(r'../../../ATM'))  # True
+
+# 判断文件 或 文件夹是否存在
+print(os.path.exists(r'logging_module'))  # True
 
 # 把字符拼接成路径,以 / 为起始,
 print(os.path.join('/a', '/', 'b', 'c.txt'))  # /b/c.txt

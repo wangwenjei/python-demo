@@ -21,6 +21,10 @@ time.sleep(0.3)
     
     结构化的时间 --mktime--> 时间戳
                <--localtime 
+               
+    完整流程:
+            格式化字符串时间 --strptime-->  结构化的时间    --mktime-->    时间戳
+                          <--strftime--               <--localtime--
 """
 
 # time.strptime 将某一格式字符串转化为 结构化时间

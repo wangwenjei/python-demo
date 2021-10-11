@@ -1,4 +1,9 @@
+"""
 # property 是一个装饰器,是用来将绑定给对象的方法伪造成一个数据属性
+我们可以使用@property装饰器来创建只读属性，@property装饰器会将方法转换为相同名称的只读属性,可以与所定义的属性配合使用，这样可以防止属性被修改
+"""
+
+
 class People:
     def __init__(self, name, weight, height):
         self.name = name

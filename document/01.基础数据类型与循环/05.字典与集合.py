@@ -21,6 +21,9 @@
     dict.values()  以列表返回字典中的所有值
 
     dict.clear()  清理字典
+
+    items() 函数以列表返回字典所有键值对
+
 """
 
 d = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
@@ -37,9 +40,9 @@ print(d)  # ==> {'a': 999, 'b': 2, 'c': 3, 'd': 4, 'x': 1, 'y': 2}
 print(d['a'])  # ==> 999
 print(d.get('a'))  # ==> 999
 
-# d.setdefault('name','wwj')
+d.setdefault('name','wwj')
 d.setdefault('aaa')
-print(d)  # ==> {'a': 999, 'b': 2, 'c': 3, 'd': 4, 'x': 1, 'y': 2, 'name': 'wwj'}
+print(d)  # ==> {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'name': 'wwj', 'aaa': None}
 
 d.clear()
 print(d)  # ==> {}
@@ -47,6 +50,16 @@ print(d)  # ==> {}
 course_list_msg = {'QH': ['Python', 'Java', 'GO'], 'BD': ['LINUX', 'Python']}
 a = list(course_list_msg.keys())
 print(list(a))   # ==> ['QH', 'BD']
+
+a1 = {1: 'a', 2: 'b', 3: 'c'}
+print(a1.items())  # ==> dict_items([(1, 'a'), (2, 'b'), (3, 'c')])
+
+for key, value in a1.items():  # 当只有一个变量接收参数时,打印元组 (1, 'a') ...
+    print(key, value)
+# ==>
+# 1 a
+# 2 b
+# 3 c
 
 """
 集合类型: set

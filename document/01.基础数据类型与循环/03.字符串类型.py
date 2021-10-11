@@ -40,9 +40,12 @@ bytes(str,encoding='utf-8')  将某一编码类型的字符串修改为Byte类�
 age = 18
 print(type(str(age)))  # ==> <class 'str'>
 # 字符串之间可以相加，但仅限于str与str之间进行，
-# 代表字符串的拼接，了解即可，不推荐使用，因为str之间的
-# 相加效率极低
+# 代表字符串的拼接，了解即可，不推荐使用，因为str之间的相加效率极低
 print('my name is ' + 'wwj')
+
+print(':'.join(['name', 'jason']))
+x = ['name', 'wwj']
+print(':'.join(x))  # ==> name:wwj
 
 a = "hello world "
 
@@ -69,9 +72,6 @@ print(res)  # ==> my name is wwj,age is 18
 
 print(len(a))  # ==> 12
 
-x = ['name', 'wwj']
-print(':'.join(x))  # ==> name:wwj
-
 print(a.replace('hello', 'HELLO'))  # ==> HELLO world
 
 print(a.isdigit())  # ==> False
@@ -85,4 +85,4 @@ print(bb, type(bb))  # ==> aa <class 'str'>
 a = "hello"
 print(bytes(a, encoding='utf-8'))  # ==> b'hello'
 
-print('abcdabcd'.index('c',5))  # ==> 6
+print('abcdabcd'.index('c', 5))  # ==> 6

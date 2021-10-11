@@ -17,7 +17,7 @@ import json
 # ensure_ascii=False  默认为True此时中文为字符编码, Flase则表示写入的中文
 print(json.dumps([1,'aa',True,'哈哈哈'],ensure_ascii=False)) # [1, "aa", true, "哈哈哈"]
 
-# 结合with open更简便的将反序列化内容写入磁盘
+# 结合with open更简便的将序列化内容写入磁盘
 res_list = [1,'aa',True,'哈哈哈']
 with open(r'test.json', mode='wt', encoding='utf-8') as f:
     json.dump(res_list,f,ensure_ascii=False)
