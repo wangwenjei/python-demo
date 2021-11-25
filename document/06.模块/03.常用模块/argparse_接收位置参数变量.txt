@@ -1,0 +1,38 @@
+运行脚本传递参数
+	方案一:    sys.argv 位置参数方法
+        import sys
+        print(sys.argv[1])
+
+
+    方案二:  变量参数
+        import argparse
+
+        parser=argparse.ArgumentParser(description='manual to this script')
+        parser.add_argument("-v","--version",type=int,required=True)
+        parser.add_argument("-n","--name",type=str,default="app")
+        args=parser.parse_args()
+        print(args.version)
+        print(args.name)
+
+       ===++++++++++++++++++++===
+
+       required=True 为必传参数否则脚本报错
+
+
+       [root@wwj shell]# python 4.py -v=1 --name="hello word"
+       1
+       hello word
+       [root@wwj shell]#
+       [root@wwj shell]# python 4.py -h
+       usage: 4.py [-h] -v VERSION [-n NAME]
+
+       manual to this script
+
+       optional arguments:
+         -h, --help            show this help message and exit
+         -v VERSION, --version VERSION
+         -n NAME, --name NAME
+
+       [root@wwj shell]# python 4.py -v=1 --name="hello word"
+       1
+       hello word

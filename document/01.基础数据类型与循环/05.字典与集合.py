@@ -13,7 +13,7 @@
     dict.update(dict2)  将dict2中的key:value更新到dict中, dic中不存在的key添加, dict存在的key以 dict2 中的值准
 
     dict[key]   普通字典取值,key没有会报错
-    dict.get(key)  get取值,key没有会返回None
+    dict.get(key, default)  get取值,key没有会返回None 也可以自定义设置一个默认的返回值
 
     dict.setdefault(key,default=None)  如果key有值则不添加, 没有值则添加键 并将值设为default的值,默认为None
 
@@ -39,6 +39,9 @@ print(d)  # ==> {'a': 999, 'b': 2, 'c': 3, 'd': 4, 'x': 1, 'y': 2}
 
 print(d['a'])  # ==> 999
 print(d.get('a'))  # ==> 999
+
+d = {'a': 1, 'b': 2}
+print(d.get('c', '1234')) # ===> 1234
 
 d.setdefault('name','wwj')
 d.setdefault('aaa')

@@ -34,8 +34,8 @@ try:
 
 except (IndexError, NameError) as e:
     print('异常信息:', e)
-# except KeyError as e:
-#     print('字典的Key不存在:', e)
+except KeyError as e:
+    print('字典的Key不存在:', e)
 except Exception as e:  # Exception 万能异常,所有的异常都可以匹配上
     print('所有的异常都可以匹配到', e)
 

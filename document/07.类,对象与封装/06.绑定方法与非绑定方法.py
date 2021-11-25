@@ -16,7 +16,7 @@ import settings
 
 
 class Mysql:
-    def __init__(self, ip, port):
+    def __init__(self, ip, port,):
         self.ip = ip
         self.port = port
 
@@ -26,7 +26,7 @@ class Mysql:
     @classmethod  # 将下面的函数装饰成绑定给类的方法
     def from_conf(cls):
         # print(cls)  # ==> <class '__main__.Mysql'>
-        return cls(settings.IP, settings.PORT)
+        return cls(settings.IP, settings.PORT,)
 
     @staticmethod  # 将下述函数装饰成一个静态方法
     def f2(x, y, z):
@@ -34,12 +34,13 @@ class Mysql:
 
 
 # 传统方式
-obj = Mysql('127.0.0.1', 3306)
-obj.f1()  # ==> 127.0.0.1:3306
+# obj = Mysql('127.0.0.1', 3306)
+# obj.f1()  # ==> 127.0.0.1:3306
 
 # 利用绑定绑定方法
 obj = Mysql.from_conf()
 print(obj.__dict__)  # ==> {'ip': '127.0.0.1', 'port': 3306}
 
 # 非绑定方法
-Mysql.f2(1, 2, 3)  # ==> 1 2 3
+# Mysql.f2(1, 2, 3)  # ==> 1 2 3
+
