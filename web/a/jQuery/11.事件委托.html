@@ -6,6 +6,20 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
+<button>是兄弟，就来砍我!!!</button>
+<button>是兄弟，就来砍我???</button>
+
+<script>
+    // 给页面上所有的button标签绑定点击事件
+    // $('button').click(function () {  // 无法影响到动态创建的标签
+    //     alert(123)
+    // })
+
+    // 事件委托
+    $('body').on('click','button',function () {
+        alert(123)  // 在指定的范围内 将事件委托给某个标签 无论该标签是事先写好的还是后面动态创建的
+    })
+</script>
 
 </body>
 </html>
