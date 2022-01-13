@@ -1,0 +1,10 @@
+~]# python3 file.py
+Traceback (most recent call last):
+  File "file.py", line 13, in <module>
+    book = xlrd.open_workbook('/tmp/document/0107.xlsx')
+  File "/usr/local/lib/python3.6/site-packages/xlrd/__init__.py", line 170, in open_workbook
+    raise XLRDError(FILE_FORMAT_DESCRIPTIONS[file_format]+'; not supported')
+
+出现该错误是因为版本问题
+xlrd.biffh.XLRDError: Excel xlsx file; not supported
+~]# pip3 install xlrd==1.2.0

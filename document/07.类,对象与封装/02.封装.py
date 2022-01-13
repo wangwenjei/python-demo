@@ -36,6 +36,7 @@ class Foo:
 # print(Foo._Foo__x)  # 1
 obj1 = Foo()
 obj1.check_x()  # 1
+obj1._Foo__func()  # ==> func  由此可见Python中并没有强制的隐藏
 
 # 直接对数据做了修改
 Foo.y = 3

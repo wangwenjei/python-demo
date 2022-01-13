@@ -23,6 +23,7 @@ obj = People1('jason', 18)
 # class关键字产生的所有类,都是由内置type实现的
 print(type(People1))  # ==> <class 'type'>
 
+
 # 创建类的过程
 # 类的三大特征
 # 1.类名
@@ -38,6 +39,7 @@ def say(self):
     print(self.name)
 
 """
+
 exec(class_body, {}, class_dic)
 print(class_dic)  # ==> {'__init__': <function __init__ at 0x7fca5cdd4040>, 'say': <function say at 0x7fca5fe1b5e0>}
 # 4.调用元类

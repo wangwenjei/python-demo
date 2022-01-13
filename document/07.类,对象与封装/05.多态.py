@@ -107,7 +107,7 @@ class Dog(Animal1):
     def say(self):
         pass
 
-
+print('===')
 obj1 = Dog()
 obj1.say()
 obj1.talk()

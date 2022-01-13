@@ -9,3 +9,4 @@ while True:
     print(data.decode('utf-8'))
     # 发消息
     server.sendto(data.upper(), client_addr)
+

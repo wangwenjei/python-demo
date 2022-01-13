@@ -44,7 +44,7 @@ class Mysql:
 
 # 利用绑定绑定方法 (先执行@classmethod绑定的函数再去执行__init__方法)
 obj = Mysql.from_conf(1, 2)
-print(obj.__dict__)  # ==> {'ip': '127.0.0.1', 'port': 3306}
+# print(obj.__dict__)  # ==> {'ip': '127.0.0.1', 'port': 3306}
 
 # 非绑定方法
 # Mysql.f2(1, 2, 3)  # ==> 1 2 3

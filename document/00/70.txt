@@ -1,0 +1,59 @@
+
+70
+    1.什么是cookie和session，你能描述一下它们的由来和工作机制吗
+
+    2.django中如何操作cookie和session，请写出尽量多的操作方法，并针对session的操作方法详细内部发生的事情，django默认的session失效时间是多久
+        cookie(服务端设置保存在客户浏览器上的键值对)
+            设置cookie以及超时时间(以秒为单位)
+                obj.set_cookie(key, value, max_age/expires)
+                expires 针对IE进行的设置
+            加盐
+                obj.set_signed_cookie(key,value,salt='盐')
+            获取
+                obj.COOKIES.get(key)
+            删除cookie
+                obj.delete_cookie(key)
+
+        session(存储在服务端上的键值对)
+            设置:
+                request.session[key] = value
+            获取:
+                request.session.get(key)
+            删除:
+                request.session.delete()
+                request.session.flush()    # 推荐方法, 客户端与服务端数据都删除
+            设置超时时间:
+                request.session.set_expiry(7200)
+
+
+    3.面相对象中的__init__和__new__的区别是什么，利用__new__可以实现什么
+        函数调用过程中会先调用__new__再调用__init__
+        __new__
+            __new__方法在Python中是真正的构造方法(创建并返回实例),通过这个方法可以产生一个cls对应的实例对象，所以说__new__方法一定要有返回
+            是在类实例化对象时第一个调用的方法，将返回实例对象
+            始终都是类方法（即第一个参数为cls），即使没有被加上装饰器
+            第一个参数cls是当前正在实例化的类，如果要得到当前类的实例，应当在当前类中的__new__方法语句中调用当前类的父类的__new__方法
+
+            如果新式类中没有重写__new__方法，Python默认是调用该类的直接父类的__new__方法来构造该类的实例，
+            如果该类的父类也没有重写__new__那么将一直按照同样的规则追溯至object的__new__方法，因为object是所有新式类的基类。
+            而如果新式类中重写了__new__方法，那么可以选择任意一个其他的新式类(必须是新式类，只有新式类有__new__因为所有新式类都是从object派生）
+            的__new__方法来创建实例，包括这个新式类的所有前代类和后代类，只要它们不会造成递归死循环。
+        __init__是一个初始化的方法,self代表由类产生出来的实例对象__init__将对这个对象进行相应的初始化操作
+
+        总结:
+            __new__方法是新式类特有的方法，通常情况下__new__方法会创建返回cls（cls指代当前类）的实例，然后调用该类的__init__方法作为初始化方法，
+            该方法接收这个实例（即self）作为自己的第一个参数，然后依次传入__new__方法中接收的位置参数和命名参数；
+            但是，如果__new__没有返回cls（即当前类）的实例，那么当前类的__init__方法是不会被调用的。
+
+
+
+    4.如何给CBV添加装饰器，列举你所知道的几种方式
+       首先需要导入模块  from django.utils.decorators import method_decorator
+       利用 method_decorator 模块有三种为CBV添加装饰器的方法
+       1. 直接在类上加 @method_decorator(login_auth,name='post')
+       2. 在类下函数上加  @method_decorator(login_auth)
+       3. 需要调用父类的dispatch函数,并未该函数添加装饰器
+          @method_decorator(login_auth)
+          def dispatch(self,request,*args,**kwargs):
+                super().dispatch(request,*args,**kwargs)
+

@@ -87,6 +87,7 @@ obj.f3()
     方式一: 指名道姓调用某一个类下的函数,不依赖于继承关系
     方式二: 利用 super()函数 调用父类提供给自己的方法,严格依赖继承关系
            调用super()会得到一个特殊的对象,该对象会参照发起属性查找的那个类的mro,去当前类的父类中找属性
+           class.mro() 依次看类的继承层级
 """
 
 
@@ -134,7 +135,7 @@ class Teacher(People):
         self.level = level
         self.salary = salary
 
-
-print(Teacher.mro())
+print('[=== === ===]')
+print(Teacher.mro())  # ==> [<class '__main__.Teacher'>, <class '__main__.People'>, <class 'object'>]
 ted_obj = Teacher('www', 18, 'male', 10, 3000)
 print(ted_obj.__dict__)  # ==> {'name': 'www', 'age': 18, 'sex': 'male', 'level': 10, 'salary': 3000}

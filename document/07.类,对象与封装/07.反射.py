@@ -38,10 +38,11 @@ print(getattr(obj, 'name'))  # ==> jason
 print(getattr(obj, 'namee', None))  # ==> None
 
 print('=' * 50)
-# 删除属性
+# 修改属性
 setattr(obj, 'name', 'www')
 print(obj.name)  # ==> www
 
+# 删除属性
 delattr(obj, 'name')
 print(obj.__dict__)  # ==> {'age': 18}
 
@@ -71,3 +72,12 @@ obj.interface()
 #  =>>
 # 请输入方法:get   
 # 正在上传
+
+print('=== === === === ===')
+
+import abcd
+print(getattr('abcd.py', 'Email', None))
+
+
+
+
