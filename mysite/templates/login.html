@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页面</title>
+
+    {# 静态的导入文件 #}
+    {#        <link href="/static/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet">#}
+    {#        <script src="/static/jquery.min.js"></script>#}
+    {#        <script src="/static/bootstrap-3.4.1/js/bootstrap.min.js"></script>#}
+
+    {# 动态的导入令牌 (静态文件动态解析)   #}
+    {% load static %}
+    <link href="{% static 'bootstrap-3.4.1/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+
+
+</head>
+<body>
+<div class="text-center"> 登录</div>
+
+<div class="container">
+    <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form action="/app01/login/" method="post">
+                    <p>
+                        <label for="id_username">username:</label>
+                        <input type="text" id="id_username" name="username" class="form-control">
+                    </p>
+                    <p>
+                        <label for="id_password">password:</label>
+                        <input type="password" id="id_password" name="password" class="form-control">
+                    </p>
+                    <p>
+                        <input type="checkbox" name="hobby" value="11"> 11
+                        <input type="checkbox" name="hobby" value="22"> 22
+                        <input type="checkbox" name="hobby" value="33"> 33
+                    </p>
+
+                    <input type="submit" class="btn btn-success btn-block">
+                </form>
+            </div>
+
+
+    </div>
+</div>
+
+</body>
+</html>

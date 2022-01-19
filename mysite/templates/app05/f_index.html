@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link href="{% static 'bootstrap-3.4.1/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/sweetalert.min.css' %}" rel="stylesheet">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/sweetalert.min.js' %}"></script>
+</head>
+<body>
+
+{#   三种渲染   #}
+{# 第一种渲染方式: 一般只在本地测试时使用, 封装程度太高,不利于后续扩展 #}
+{#{{ form_obj.as_p }}#}
+{#{{ form_obj.as_ul }}#}
+{#{{ form_obj.as_table }}#}
+
+{# 第二种渲染方式: 可扩展性强,但是书写代码多,不推荐使用 #}
+{#<p>{{ form_obj.username.label }}:{{ form_obj.username }}</p>#}
+{#<p>{{ form_obj.password.label }}:{{ form_obj.password }}</p>#}
+{#<p>{{ form_obj.email.label }}:{{ form_obj.email }}</p>#}
+
+{# 第三中渲染方式 #}
+{#{% for form in form_obj %}#}
+{#    <p>{{ form.label }}:{{ form }}</p>#}
+{#{% endfor %}#}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="" method="post" novalidate>
+                {% for form in form_obj %}
+                    <p>
+                        {{ form.label }}:{{ form }}
+                        <span style="color: red">{{ form.errors.0 }}</span>
+                    </p>
+
+                {% endfor %}
+
+                <input type="submit">
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

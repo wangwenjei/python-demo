@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    {% load static %}
+    <link href="{% static 'bootstrap-3.4.1/css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+
+</head>
+<body>
+<div class="text-center">注册</div>
+
+<div class="container">
+    <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <form action="/app01/register/" method="post">
+                    <p>
+                        <label for="id_username">username:</label>
+                        <input type="text" id="id_username" name="username" class="form-control">
+                    </p>
+                    <p>
+                        <label for="id_password">password:</label>
+                        <input type="password" id="id_password" name="password" class="form-control">
+                    </p>
+                    <input type="submit" class="btn btn-primary btn-block">
+                </form>
+            </div>
+
+
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{% extends 'app04/home.html' %}
+
+{% block content %}
+    <a href="{% url 'app04_book_add' %}" class="btn btn-info"> 添加 </a>
+    <br><br>
+    <table class="table table-hover table-striped">
+        <thead>
+        <tr>
+            <td> ID</td>
+            <td> 序号</td>
+            <td> 书名</td>
+            <td> 价格</td>
+            <td> 出版日期</td>
+            <td> 出版社</td>
+            <td> 作者</td>
+            <td> 操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book_obj in book_queryset %}
+            <tr>
+                <td> {{ book_obj.pk }} </td>
+                <td> {{ forloop.counter }} </td>
+                <td> {{ book_obj.title }} </td>
+                <td> {{ book_obj.price }} </td>
+                <td> {{ book_obj.publish_date|date:'Y-m-d' }} </td>
+                <td> {{ book_obj.publish.name }} </td>
+                <td>
+                    {% for author_obj in book_obj.authors.all %}
+                        {% if forloop.last %}
+                            {{ author_obj.name }}
+                        {% else %}
+                            {{ author_obj.name }},
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'app04_book_edit' book_obj.pk %}" class="btn btn-success btn-xs">编辑</a>
+                    <a href="{% url 'app04_book_delete' book_obj.pk %}" class="btn btn-danger btn-xs">删除</a>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+{% endblock %}

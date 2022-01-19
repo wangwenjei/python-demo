@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <link href="{% static 'bootstrap-3.4.1/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'dist/sweetalert.min.css' %}" rel="stylesheet">
+    <script src="{% static 'jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'dist/sweetalert.min.js' %}"></script>
+</head>
+<body>
+<form action="" method="post">
+    <p>
+        <label for="id_username">username:</label>
+        <input type="text" id="id_username" name="username">
+        <span style="color: red">{{ back_dic.username_err }}</span>
+    </p>
+    <p>
+        <label for="">password:</label>
+        <input type="password" id="id_password" name="password">
+        <span style="color: red">{{ back_dic.password_err }}</span>
+    </p>
+    <input type="submit" class="btn btn-sm btn-info">
+</form>
+
+
+
+</body>
+</html>
