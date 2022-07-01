@@ -30,7 +30,7 @@ while True:
 
             # 头信息
             header = {
-                'filename': 'test.txt',
+                'filename': '继续教育数据分析入库.txt',
                 'total_size': total_size,
                 'md5': 'ansdk12ednsla1280'
             }

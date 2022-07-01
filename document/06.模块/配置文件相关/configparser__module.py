@@ -5,7 +5,7 @@ ini文件解析器  可以用于定义读取配置文件
 
 # 将配置文件内容读取到内存
 config = configparser.ConfigParser()
-config.read(r'test.ini')
+config.read(r'继续教育数据分析入库.ini')
 
 # 获取有哪些 section
 print(config.sections())  # ==> ['section1', 'section2']
