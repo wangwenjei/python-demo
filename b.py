@@ -1,34 +1,6 @@
-"""
-def outter(func):
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        res = func(*args, **kwargs)
-        stop = time.time()
-        print("timeout:", stop - start)
-        return res
+a = ['J1-22-01\n(国)', '北京大学口腔医\n学院口腔颌面外\n科', '俞光岩', '010-\n62179977-\n5295', '唾液腺疾\n病诊治和\n唾液腺外\n科技术新\n进展', '俞光岩',
+     '010-\n82195992', '2022/10/10-\n2022/10/11\n2.0天', '宁夏银川市', '4分', '相关专业的继\n续教育对象', '20', '']
 
-    return wrapper
-"""
+# metadata['project_num'].append('%s%s' %(i[0].split('\n')[0], i[0].split('\n')[1]))
 
-import time
-
-
-def outter(func):
-    def wrapper(*args, **kwargs):
-        start = time.time()
-        res = func(*args, **kwargs)
-        stop = time.time()
-
-        print("timeout:", stop - start)
-        return res
-
-    return wrapper
-
-
-@outter
-def index():
-    time.sleep(1)
-    return '被装饰对象'
-
-
-print(index())
+print(''.join(a[1].split('\n')))

@@ -7,46 +7,52 @@ import time
 # 元数据格式
 metadata = {
     'projectId': [],
-    'project_num': [],
-    'project_name': [],
-    'company': [],
-    'leading_name': [],
-    'tel': [],
-    'startdate': [],
-    'enddate': [],
-    'date_num': [],
-    'address': [],
-    'credit': [],
-    'crowd': [],
-    'person_num': [],
-    'remark': []
+    'project_num': [],  # 项目编号
+    'company': [],  # 基地名称
+    'project_name': [],  # 项目名称
+    'leading_name': [],  # 项目负责人
+    'tel': [],  # 负责人电话
+
+    'startdate': [],  # 举办开始时间
+    'enddate': [],  # 举办结束时间
+    'date_num': [],  # 举办天数
+
+    'address': [],  # 举办地点
+    'credit': [],  # 学分
+    'crowd': [],  # 教学对象
+    'person_num': [],  # 招生人数
+    'remark': []  # 备注
 }
 
 # 读取pdf文件，保存为pdf实例
-pdf = pdfplumber.open('./1.pdf')
-# for i in range(342):  # 循环PDF读取每页
-for i in range(2):  # 循环PDF读取每页
+pdf = pdfplumber.open('./aa.pdf')
+# for i in range(2):  # 循环PDF读取每页
+for i in range(32):  # 循环PDF读取每页
     first_page = pdf.pages[i]
     table = first_page.extract_table()
 
-    table.pop(0)  # 删除每页第一行的头文件
-    for i in table:  # 构造数据
-        metadata['projectId'].append('null')
-        metadata['project_num'].append('%s%s' %(i[0].split('\n')[0], i[0].split('\n')[1]))
-        metadata['project_name'].append(i[1])
-        metadata['company'].append(i[2])
-        metadata['leading_name'].append(i[3])
-        metadata['tel'].append(i[4])
-        metadata['address'].append(i[6])
-        metadata['credit'].append(i[7].split('分')[0])
-        metadata['crowd'].append(i[8])
-        metadata['person_num'].append(i[9].split('/')[0])
-        metadata['remark'].append(i[10])
+    table.pop(0)  # 删除每页第一行的头文件ss
 
-        date = i[5].split('\n')
+    for i in table:  # 构造数据
+        # print(i)
+
+        metadata['projectId'].append('null')
+        metadata['project_num'].append('%s%s' % (i[0].split('\n')[0], i[0].split('\n')[1]))
+        metadata['company'].append(''.join(i[1].split('\n')))
+        metadata['project_name'].append(''.join(i[4].split('\n')))
+        metadata['leading_name'].append(i[5])
+        metadata['tel'].append(''.join(i[6].split('\n')))
+        metadata['address'].append(i[8])
+        metadata['credit'].append(i[9].split('分')[0])
+        metadata['crowd'].append(''.join(i[10].split('\n')))
+        metadata['person_num'].append(i[11].split('/')[0])
+        metadata['remark'].append(i[12])
+
+        date = i[7].split('\n')
         metadata['startdate'].append(date[0].rstrip('-'))
         metadata['enddate'].append(date[1])
         metadata['date_num'].append(date[2].split('天')[0])
+
 
 # 写入Excel
 def to_excel(metadata):
@@ -56,7 +62,7 @@ def to_excel(metadata):
         'projectId': metadata['projectId'],
         'project_num': metadata['project_num'],
         'project_name': metadata['project_name'],
-        'company': metadata['project_name'],
+        'company': metadata['company'],
         'leading_name': metadata['leading_name'],
         'tel': metadata['tel'],
         'startdate': metadata['startdate'],
@@ -77,7 +83,6 @@ def to_excel(metadata):
 
     writer.save()
     writer.close()
-
 
 to_excel(metadata=metadata)
 
