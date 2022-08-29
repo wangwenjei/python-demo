@@ -1,0 +1,3 @@
+[2022-08-29 15:34:28,635][MainThread:4630339072][task_id:user][user_interface.py:38][INFO][用户 [jason01] 注册成功!]
+[2022-08-29 15:34:35,724][MainThread:4630339072][task_id:user][user_interface.py:59][WARNING][用户名或密码错误]
+[2022-08-29 15:34:43,259][MainThread:4630339072][task_id:user][user_interface.py:51][INFO][用户 [jason01] 登录成功!]
