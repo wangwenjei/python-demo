@@ -8,6 +8,9 @@ def task(name):
     print('%s is over' % name)
 
 
+
+
+
 # 开启线程不是必须要在__main__下执行代码, 直接写就可以了
 # 但是习惯还是写在__main__下
 

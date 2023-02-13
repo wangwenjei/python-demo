@@ -32,7 +32,7 @@ for i in range(2):  # 循环PDF读取每页
     table.pop(0)  # 删除每页第一行的头文件
     for i in table:  # 构造数据
         metadata['projectId'].append('null')
-        metadata['project_num'].append('%s%s' %(i[0].split('\n')[0], i[0].split('\n')[1]))
+        metadata['project_num'].append('%s%s' % (i[0].split('\n')[0], i[0].split('\n')[1]))
         metadata['project_name'].append(i[1])
         metadata['company'].append(i[2])
         metadata['leading_name'].append(i[3])
@@ -47,6 +47,7 @@ for i in range(2):  # 循环PDF读取每页
         metadata['startdate'].append(date[0].rstrip('-'))
         metadata['enddate'].append(date[1])
         metadata['date_num'].append(date[2].split('天')[0])
+
 
 # 写入Excel
 def to_excel(metadata):

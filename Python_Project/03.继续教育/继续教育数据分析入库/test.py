@@ -49,6 +49,6 @@ data = {
     "submit": "%26%23160%3B%B5%C7%26%23160%3B%26%23160%3B%C2%BC%26%23160%3B"
 }
 
-# response = requests.post(url=login_url, headers=headers, data=data)
-# print(response.text)
-# print(response.status_code)
+response = requests.post(url=login_url, headers=headers, data=data)
+print(response.text)
+print(response.status_code)

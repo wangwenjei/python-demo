@@ -12,11 +12,9 @@ metadata = {
     'project_name': [],  # 项目名称
     'leading_name': [],  # 项目负责人
     'tel': [],  # 负责人电话
-
     'startdate': [],  # 举办开始时间
     'enddate': [],  # 举办结束时间
     'date_num': [],  # 举办天数
-
     'address': [],  # 举办地点
     'credit': [],  # 学分
     'crowd': [],  # 教学对象
@@ -31,10 +29,9 @@ for i in range(32):  # 循环PDF读取每页
     first_page = pdf.pages[i]
     table = first_page.extract_table()
 
-    table.pop(0)  # 删除每页第一行的头文件ss
+    table.pop(0)  # 删除每页第一行的头文件
 
     for i in table:  # 构造数据
-        # print(i)
 
         metadata['projectId'].append('null')
         metadata['project_num'].append('%s%s' % (i[0].split('\n')[0], i[0].split('\n')[1]))
@@ -83,6 +80,7 @@ def to_excel(metadata):
 
     writer.save()
     writer.close()
+
 
 to_excel(metadata=metadata)
 
