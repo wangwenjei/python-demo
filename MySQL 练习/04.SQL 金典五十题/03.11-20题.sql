@@ -94,4 +94,16 @@ ORDER BY 选修人数 DESC, sc.cid ASC
 
 
 -- 20.按各科成绩进行排序，并显示排名， Score 重复时保留名次空缺
+SELECT a.cid, a.sid, a.score, COUNT(b.score)+1 as rank 
+FROM sc a LEFT JOIN sc b  
+ON a.cid = b.cid AND a.score < b.score 
+GROUP BY a.cid, a.sid, a.score order by a.cid, rank ASC;
+
+
+-- MySQL 8.0
+SELECT *, RANK() OVER (PARTITION BY cid ORDER BY score DESC) AS ranking FROM sc;
+
+
+
+
 

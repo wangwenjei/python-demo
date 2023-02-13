@@ -12,7 +12,7 @@ insert into course values('01','语文','02'),('02','数学','01'),('03','英语
 create table teacher(tid varchar(10),tname varchar(10));
 insert into teacher values('01','张三'),('02','李四'),('03','王五');
 
--- 成绩表
+-- 成绩表sc
 create table sc(sid varchar(10),cid varchar(10),score decimal(18,1));
 insert into sc values('01','01',80),('01','02',90),('01','03',99),('02','01',70),('02','02',60),('02','03',80),('03','01',80),('03','02',80),('03','03',80),('04','01',50),('04','02',30),('04','03',20),('05','01',76),('05','02',87),('06','01',31),('06','03',34),('07','02',89),('07','03',98);
 
@@ -38,9 +38,9 @@ insert into sc values('01','01',80),('01','02',90),('01','03',99),('02','01',70)
 -- 17.检索" 01 "课程分数小于 60，按分数降序排列的学生信息以及学生成绩
 -- 18.按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
 -- 19.查询各科成绩最高分、最低分和平均分:
-以如下形式显示:课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率
-及格为>=60，中等为:70-80，优良为:80-90，优秀为:>=90
-要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列
+-- 	  以如下形式显示:课程ID,课程name,最高分,最低分,平均分,及格率,中等率,优良率,优秀率
+--    及格为>=60,中等为:70-80,优良为:80-90,优秀为:>=90
+--    要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列
 -- 20.按各科成绩进行排序，并显示排名， Score 重复时保留名次空缺
 
 
@@ -101,3 +101,28 @@ WHERE s.coursenumber is NULL or s.coursenumber != (SELECT COUNT(cid) FROM course
 -- https://blog.csdn.net/dazuo_001/article/details/116979591
 -- 注:
 -- GROUP BY 详解: https://blog.csdn.net/zj20142213/article/details/81073428
+
+
+-- 官方文档
+-- https://www.begtut.com/mysql/mysql-like.html
+
+
+SELECT
+  aname,
+  bname,
+  c.name cname
+FROM
+  (
+    (
+      SELECT a.name as aname, b.name as bname, b.parentid, b.base_areaid
+	  FROM
+        (
+          ( SELECT base_areaid,name FROM base_area WHERE parentid = 0 ) AS a
+          LEFT JOIN base_area b ON a.base_areaid = b.parentid
+        )
+    ) AS t1
+  )
+  LEFT JOIN base_area c ON t1.base_areaid = c.parentid
+WHERE
+  aname = '安徽'
+--   cname = '无为市'

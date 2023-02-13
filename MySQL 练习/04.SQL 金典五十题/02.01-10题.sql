@@ -40,6 +40,19 @@ RIGHT JOIN
 ON t1.sid = t2.sid;
 
 
+-- 查询
+SELECT r.sid, class1, class2, class3 FROM (
+    SELECT t1.sid, class1, class2 FROM (
+        ( SELECT sid, score AS class1 FROM sc WHERE sc.cid = '01' ) AS t1
+        LEFT JOIN
+        ( SELECT sid, score AS class2 FROM sc WHERE sc.cid = '02' ) AS t2
+        ON t1.sid = t2.sid
+    ) 
+) AS r LEFT JOIN
+( SELECT sid, score AS class3 FROM sc WHERE sc.cid = '03') AS t3
+ON r.sid = t3.sid
+
+
 -- 4.查询不存在" 01 "课程但存在" 02 "课程的情况
 SELECT sid, cid, score FROM sc WHERE sc.cid = '02' AND sc.sid NOT IN (
 	SELECT sid FROM sc WHERE sc.cid = '01'

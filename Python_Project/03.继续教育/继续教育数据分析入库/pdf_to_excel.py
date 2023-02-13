@@ -23,9 +23,10 @@ metadata = {
 }
 
 # 读取pdf文件，保存为pdf实例
-pdf = pdfplumber.open('./1.pdf')
+pdf = pdfplumber.open('./2023-01.pdf')
 # for i in range(342):  # 循环PDF读取每页
-for i in range(2):  # 循环PDF读取每页
+# for i in range(2):  # 循环PDF读取每页
+for i in range(509): 
     first_page = pdf.pages[i]
     table = first_page.extract_table()
 
