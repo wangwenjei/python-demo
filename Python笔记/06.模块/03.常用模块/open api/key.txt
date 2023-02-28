@@ -1,4 +1,5 @@
-openai.api_key = "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"
+openai.api_key = "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"
 
+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
 
 http://coolaf.com/   post 在线工具

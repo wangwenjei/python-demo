@@ -45,3 +45,26 @@ print(pickle.dumps(res_pickle_dumps))
 
 # 反序列化
 print(pickle.loads(pickle.dumps(res_pickle_dumps)))  # [1, 'aa', True]
+
+print(
+    json.dumps({'que': '豹子头林冲的外号'}, ensure_ascii=False)
+)
+que = """
+一二三四五六七八九十
+"""
+
+print(que[-2000:-1])
+
+
+print(json.dumps('开发工程师JD',ensure_ascii=False))
+
+
+import logging
+
+
+logging.debug("This is a debug log.")
+logging.info("This is a info log.")
+logging.warning("This is a warning log.")
+logging.error("This is a error log.")
+logging.critical("This is a critical log.")
+

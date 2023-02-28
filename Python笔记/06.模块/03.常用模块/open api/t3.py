@@ -4,7 +4,7 @@ import os
 import openai
 from tenacity import retry, stop_after_attempt, wait_random
 
-openai.api_key = "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"
+openai.api_key = "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"
 print("if you want to stop the conversation, please input 'quit'")  # 提示想终止聊天时输入"quit"
 
 
