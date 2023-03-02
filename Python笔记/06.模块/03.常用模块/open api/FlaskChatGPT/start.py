@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import json
 import logging
-from api import askChatGPT
+from api import askChatGPT, ChatGPT_turbo
 
 app = Flask(__name__)
 
@@ -32,7 +32,7 @@ def login():
 def ChatGPT():
     if request.method == 'GET':
         question = request.args.get('que')
-        return askChatGPT(question=question)
+        return ChatGPT_turbo(question=question)
 
     if request.method == 'POST':
         back_dic = {'code': 200, 'msg': ''}
@@ -46,10 +46,10 @@ def ChatGPT():
             back_dic = json.dumps(back_dic, ensure_ascii=False)
             return back_dic
 
-        question = question[-2000:]
+        question = question[-20:]
         app.logger.info(question)
 
-        back_dic['msg'] = askChatGPT(question=question)
+        back_dic['msg'] = ChatGPT_turbo(question=question)
         back_dic = json.dumps(back_dic, ensure_ascii=False)
         return back_dic
 
@@ -58,8 +58,7 @@ if __name__ == '__main__':
     app.debug = True
     handler = logging.FileHandler('./log/flask.log', encoding='UTF-8')
     handler.setLevel(logging.DEBUG)  # 设置日志记录最低级别为DEBUG，低于DEBUG级别的日志记录会被忽略，不设置setLevel()则默认为NOTSET级别。
-    logging_format = logging.Formatter(
-        '[%(asctime)s]  %(message)s')
+    logging_format = logging.Formatter('[%(asctime)s]  %(message)s')
     handler.setFormatter(logging_format)
     app.logger.addHandler(handler)
 
