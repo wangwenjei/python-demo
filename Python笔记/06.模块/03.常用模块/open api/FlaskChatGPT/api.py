@@ -1,7 +1,7 @@
 import openai
 from tenacity import retry, stop_after_attempt, wait_random
 
-openai.api_key = "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"
+openai.api_key = "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"
 
 
 @retry(stop=stop_after_attempt(6), wait=wait_random(min=1, max=3))

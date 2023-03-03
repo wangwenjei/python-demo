@@ -46,7 +46,7 @@ def ChatGPT():
             back_dic = json.dumps(back_dic, ensure_ascii=False)
             return back_dic
 
-        question = question[-20:]
+        question = question[-200:]
         app.logger.info(question)
 
         back_dic['msg'] = ChatGPT_turbo(question=question)
@@ -62,6 +62,6 @@ if __name__ == '__main__':
     handler.setFormatter(logging_format)
     app.logger.addHandler(handler)
 
-    app.run()
-    # app.run(host='0.0.0.0', port=6000)
+    # app.run()
+    app.run(host='0.0.0.0', port=80)
     # app.run(host='0.0.0.0', port=6000, debug=True)
