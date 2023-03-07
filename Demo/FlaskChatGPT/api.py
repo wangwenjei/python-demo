@@ -44,3 +44,13 @@ def ChatGPT_turbo(question):
             raise Exception
     except Exception as e:
         print(e)
+
+
+def ChatGPT_Picture(description):  # 定义一个函数，以便后面调用
+    response = openai.Image.create(
+        prompt=description,
+        n=1,  # 图片的张数，可自己调整
+        size="512x512"  # 大小可以是自己调整，包括：256x256,512x512,1024x1024。注意：试用会员过期后，每次成功调用会收费的。
+    )
+    image_url = response['data'][0]['url']  # 1张图片1个网址，把网址复制粘贴入浏览器即可查看。注意：网址是临时的，1小时后消失！！
+    return image_url

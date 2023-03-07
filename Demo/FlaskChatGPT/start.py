@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request
 import json
 import logging
-from api import askChatGPT, ChatGPT_turbo
+from api import askChatGPT, ChatGPT_turbo, ChatGPT_Picture
+from WeChatMessage import WeChatMes
 
 app = Flask(__name__)
 
@@ -54,9 +55,25 @@ def ChatGPT():
         return back_dic
 
 
+@app.route('/ChatGPTpicture', methods=['POST', 'GET'])
+def ChatGPTpicture():
+    if request.method == 'GET':
+        question = request.args.get('q')
+        return ChatGPT_Picture(description=question)
+
+
+@app.route('/Wx/Message', methods=['GET'])
+def WxMessage():
+    if request.method == 'GET':
+        content = request.args.get('q')
+        wechat = WeChatMes()
+        wechat.send_message(content=content)
+        return content
+
+
 if __name__ == '__main__':
     app.debug = True
-    handler = logging.FileHandler('./log/flask.log', encoding='UTF-8')
+    handler = logging.FileHandler('log/flask.log', encoding='UTF-8')
     handler.setLevel(logging.DEBUG)  # 设置日志记录最低级别为DEBUG，低于DEBUG级别的日志记录会被忽略，不设置setLevel()则默认为NOTSET级别。
     logging_format = logging.Formatter('[%(asctime)s]  %(message)s')
     handler.setFormatter(logging_format)
