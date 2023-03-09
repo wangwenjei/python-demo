@@ -1,0 +1,4 @@
+Flask==2.2.3
+openai==0.27.0
+tenacity==8.2.2
+pycrypto==2.6.1

@@ -1,0 +1,9 @@
+FlaskChatGPT   flask框架实现ChatGPT接口
+
+
+pip install AES
+
+
+pip install pycrypto
+pip install Crypto
+requests

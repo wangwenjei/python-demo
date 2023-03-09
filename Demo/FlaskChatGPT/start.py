@@ -1,7 +1,7 @@
-from flask import Flask, render_template, request
+from flask import Flask,  request
 import json
 import logging
-from api import askChatGPT, ChatGPT_turbo, ChatGPT_Picture
+from api import  ChatGPT_turbo, ChatGPT_Picture
 from WeChatMessage import WeChatMes
 
 app = Flask(__name__)

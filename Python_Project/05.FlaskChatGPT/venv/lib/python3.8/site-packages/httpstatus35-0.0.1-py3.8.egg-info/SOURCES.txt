@@ -1,0 +1,12 @@
+LICENSE
+MANIFEST.in
+README.rst
+setup.cfg
+setup.py
+httpstatus/__init__.py
+httpstatus35.egg-info/PKG-INFO
+httpstatus35.egg-info/SOURCES.txt
+httpstatus35.egg-info/dependency_links.txt
+httpstatus35.egg-info/not-zip-safe
+httpstatus35.egg-info/requires.txt
+httpstatus35.egg-info/top_level.txt
