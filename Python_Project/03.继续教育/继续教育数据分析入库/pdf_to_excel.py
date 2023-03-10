@@ -58,7 +58,7 @@ def to_excel(metadata):
         'projectId': metadata['projectId'],
         'project_num': metadata['project_num'],
         'project_name': metadata['project_name'],
-        'company': metadata['project_name'],
+        'company': metadata['company'],
         'leading_name': metadata['leading_name'],
         'tel': metadata['tel'],
         'startdate': metadata['startdate'],
