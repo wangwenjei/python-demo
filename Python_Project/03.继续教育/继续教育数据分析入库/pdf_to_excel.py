@@ -23,10 +23,8 @@ metadata = {
 }
 
 # 读取pdf文件，保存为pdf实例
-pdf = pdfplumber.open('./2023-01.pdf')
-# for i in range(342):  # 循环PDF读取每页
-# for i in range(2):  # 循环PDF读取每页
-for i in range(509): 
+pdf = pdfplumber.open('./2023-02.pdf')
+for i in range(509):  # 循环PDF读取每页
     first_page = pdf.pages[i]
     table = first_page.extract_table()
 
@@ -44,11 +42,12 @@ for i in range(509):
         metadata['person_num'].append(i[9].split('/')[0])
         metadata['remark'].append(i[10])
 
-        date = i[5].split('\n')
-        metadata['startdate'].append(date[0].rstrip('-'))
-        metadata['enddate'].append(date[1])
-        metadata['date_num'].append(date[2].split('天')[0])
+        metadata['startdate'].append(i[5][0:10])
+        metadata['enddate'].append(i[5][11:21])
+        metadata['date_num'].append(i[5][21::])
 
+
+print(metadata)
 
 # 写入Excel
 def to_excel(metadata):
@@ -77,7 +76,7 @@ def to_excel(metadata):
     df_confirm = pd.DataFrame(confirm_execl_data)
     df_confirm.to_excel(excel_writer=writer, sheet_name='继续教育')
 
-    writer.save()
+    # writer.save()
     writer.close()
 
 
