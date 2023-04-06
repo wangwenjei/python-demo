@@ -1,9 +1,7 @@
-import pdfplumber
 import pandas as pd
-import xlwt
 import time
 
-"""  学科  """
+"""  学科数据治理  """
 
 edu_key = [
     {"id": "202301", "name": "基础形态"},

@@ -1,25 +1,14 @@
-# 解析PDF文件并分析有用数据写入Excel文件
 import pdfplumber
 import pandas as pd
-import xlwt
 import time
+
+""" 继续教育数据治理导出Excel """
 
 # 元数据格式
 metadata = {
-    'projectId': [],
-    'project_num': [],
-    'project_name': [],
-    'company': [],
-    'leading_name': [],
-    'tel': [],
-    'startdate': [],
-    'enddate': [],
-    'date_num': [],
-    'address': [],
-    'credit': [],
-    'crowd': [],
-    'person_num': [],
-    'remark': []
+    'projectId': [], 'project_num': [], 'project_name': [], 'company': [], 'leading_name': [],
+    'tel': [], 'startdate': [], 'enddate': [], 'date_num': [],
+    'address': [], 'credit': [], 'crowd': [], 'person_num': [], 'remark': []
 }
 
 # 读取pdf文件，保存为pdf实例
@@ -47,8 +36,6 @@ for i in range(509):  # 循环PDF读取每页
         metadata['date_num'].append(i[5][21::])
 
 
-print(metadata)
-
 # 写入Excel
 def to_excel(metadata):
     file_name = '%s.xlsx' % (time.strftime('%Y-%m-%d'))
@@ -68,7 +55,6 @@ def to_excel(metadata):
         'crowd': metadata['crowd'],
         'person_num': metadata['person_num'],
         'remark': metadata['remark']
-
     }
 
     writer = pd.ExcelWriter(file_name)
@@ -77,6 +63,9 @@ def to_excel(metadata):
     df_confirm.to_excel(excel_writer=writer, sheet_name='继续教育')
 
     # writer.save()
+    # FutureWarning: save is not part of the public API, usage can give unexpected results and will be removed in a future version
+    # 在新的版本中 save 方法已私有化 直接调用close 即可
+
     writer.close()
 
 

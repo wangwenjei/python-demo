@@ -36,7 +36,8 @@ func(1, 2, 3)  # ==> (1, 2, 3)
 
 def sum(*args):
     num = 0
-    for i in args: num += i
+    for i in args:
+        num += i
     print(num)
 
 

@@ -1,7 +1,6 @@
 # 解析PDF文件并分析有用数据写入Excel文件
 import pdfplumber
 import pandas as pd
-import xlwt
 import time
 
 # 元数据格式
