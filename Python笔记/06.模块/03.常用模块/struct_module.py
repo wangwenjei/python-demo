@@ -7,9 +7,9 @@ import struct
 """
 
 # 将一个数字转换为固定长度的bytes
-x = struct.pack('i', 1024)
-print(x, len(x))  # ==> b'\x00\x04\x00\x00' 4
+x = struct.pack('i', 1997)
+print(x, len(x))  # ==> b'\xcd\x07\x00\x00' 4
 
 # 将转换后的解压
 q = struct.unpack('i', x)
-print(q)  # ==> (1024,)
+print(q)  # ==> (1997,)

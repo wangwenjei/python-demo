@@ -15,7 +15,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # 将 BASE_DIR 添加到环境变量中
 sys.path.append(BASE_DIR)
 
+print(sys.path)
 # 此时可以导入装饰器
 import hello_python
 
 hello_python.func()
+
+print(__file__)
+print(os.path.dirname(__file__))

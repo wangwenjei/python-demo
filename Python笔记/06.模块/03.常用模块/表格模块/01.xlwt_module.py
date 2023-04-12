@@ -9,7 +9,7 @@ sheet = book.add_sheet('sheet1')
 col_names = ['姓名', '年龄', '家庭住址']
 
 for index, title in enumerate(col_names):
-    sheet.write(0, index, title)
+    sheet.write(0, index, title)  # 行，列，写入内容
 
 for index, name in enumerate(names):
     sheet.write(index + 1, 0, name)
@@ -20,6 +20,6 @@ for index, age in enumerate(ages):
 for index, add in enumerate(adds):
     sheet.write(index + 1, 2, add)
 
-book.save('继续教育数据分析入库.xls')
+book.save('学生信息表.xls')
 
 

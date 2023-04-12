@@ -8,3 +8,8 @@ Traceback (most recent call last):
 出现该错误是因为版本问题
 xlrd.biffh.XLRDError: Excel xlsx file; not supported
 ~]# pip3 install xlrd==1.2.0
+
+
+# writer.save()
+# FutureWarning: save is not part of the public API, usage can give unexpected results and will be removed in a future version
+# 在新的版本中 save 方法已私有化 直接调用close 即可
