@@ -1,0 +1,22 @@
+2024-11-13 17:39:31,574 - MainThread:8149230848 - 日志名字:info_log - s.py:44 -INFO - 调用info_log,info日志保存到info.log
+2024-11-13 17:39:36,475 - MainThread:8149230848 - 日志名字:info_log - s.py:44 -INFO - 调用info_log,info日志保存到info.log
+2024-11-13 17:39:36,476 - MainThread:8149230848 - 日志名字:info_log - s.py:45 -ERROR - 调用info_log,info日志保存到error.log
+2024-11-13 17:40:02,850 - MainThread:8149230848 - 日志名字:aa - s.py:49 -INFO - start func
+2024-11-13 17:41:40,917 - MainThread:8149230848 - 日志名字:aa - s.py:49 -INFO - 当找不到对应的loggers时走{''}默认 
+[2024-11-13 19:09:20,504] [t.py:22] [INFO]  hello1
+[2024-11-13 19:09:20,505] [t.py:23] [INFO]  hello2
+[2024-11-13 19:09:20,505] [t.py:24] [INFO]  hello3
+[2024-11-13 19:09:20,505] [t.py:25] [INFO]  hello4
+[2024-11-13 19:09:20,505] [s.py:3] [INFO]  hello world
+[2024-11-14 11:48:22,309] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/user/open/heartbeat'}
+[2024-11-14 11:48:22,426] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/system/open/heartbeat'}
+[2024-11-14 11:48:22,549] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/message/open/heartbeat'}
+[2024-11-14 11:48:22,672] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/flowable/open/heartbeat'}
+[2024-11-14 11:49:14,604] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/user/open/heartbeat'}
+[2024-11-14 11:49:14,715] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/system/open/heartbeat'}
+[2024-11-14 11:49:14,819] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/message/open/heartbeat'}
+[2024-11-14 11:49:14,922] [s.py:46] [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/flowable/open/heartbeat'}
+[2024-11-14 11:52:12,943] - [s.py:43] - [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/user/open/heartbeat'}
+[2024-11-14 11:52:13,044] - [s.py:43] - [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/system/open/heartbeat'}
+[2024-11-14 11:52:13,161] - [s.py:43] - [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/message/open/heartbeat'}
+[2024-11-14 11:52:13,277] - [s.py:43] - [INFO]  {'msg': '操作成功', 'code': 200, 'data': 'ok', 'path': '/flowable/open/heartbeat'}

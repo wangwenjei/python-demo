@@ -65,7 +65,7 @@ print(a.lower())  # ==> hello world
 print(a.upper())  # =>> HELLO WORLD
 
 print(a.startswith('hello'))  # ==> True
-print(a.endswith('abc'))  # ==> False
+print(a.endswith('Demo01'))  # ==> False
 
 res = "my name is {name},age is {age}".format(age=18, name='wwj')
 print(res)  # ==> my name is wwj,age is 18

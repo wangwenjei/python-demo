@@ -1,0 +1,21 @@
+{
+  "http:ny2Lier1asU4lTgithrpip511niAT5QVNIDWqCE_:hebei-wwj": {
+    "upHosts": [
+      "http://upload-z1.qiniup.com",
+      "http://up-z1.qiniup.com"
+    ],
+    "ioHosts": [
+      "http://iovip-z1.qbox.me"
+    ],
+    "rsHosts": [
+      "http://rs-z1.qbox.me"
+    ],
+    "rsfHosts": [
+      "http://rsf-z1.qbox.me"
+    ],
+    "apiHosts": [
+      "http://api-z1.qiniu.com"
+    ],
+    "deadline": 1695719884
+  }
+}

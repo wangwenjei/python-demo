@@ -36,7 +36,7 @@
     uniq：全拼uniqique，用于检查及删除文本文件中重复出现的行列。
     wc：统计文件的行数、单词数或字节数等。
     iconv：转换文件的编码格式。
-    dos2unix：是将Windows DOS格式文件转换为Unix、Linux格式的实用命令。Windows格式文件的换行符为\\r\\n ,而Unix&Linux文件的换行符为\\n.。dos2unix命令其实就是将文件中的\\r\\n 转换为\\n。
+    dos2unix：是将Windows DOS格式文件转换为Unix、Linux格式的实用命令。Windows格式文件的换行符为\\r\ ,而Unix&Linux文件的换行符为\.。dos2unix命令其实就是将文件中的\\r\ 转换为\。
     diff：全拼difference，diff以逐行的方式比较文件的差异。
     vimdiff：命令行可视化文件比较工具，常用于文本文件。
     rev：全拼reverse，rev命令将文件中的每行内容以字符为单位反序输出，即第一个字符最后输出，最后一个字符最先输出，依次类推。

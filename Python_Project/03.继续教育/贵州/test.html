@@ -1,0 +1,674 @@
+/Users/jason/python-demo/python-demo/bin/python /Users/jason/python/python-demo/Python_Project/03.继续教育/贵州/gzCME.py
+{'当前页:': 1, '每页最大条数:': 10}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <title>
+    贵州省历年公布项目查询
+</title>
+    <link href="../css/include.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/js/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-migrate-3.4.0.min.js"></script>
+    <script src="../js/Common.js" type="text/javascript"></script>
+    <script src="../js/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="../js/lhgdialog/lhgdialog.js" type="text/javascript"></script>
+    <style type="text/css">
+        .tab1 {
+            font-size: 13px;
+            height: 100px;
+            border-collapse: collapse;
+            border: #eee 1px solid;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .tab1 td {
+            border: #ddd 1px solid;
+            height: 30px;
+        }
+
+        .editTabletitle {
+            height: 20px;
+            text-align: right;
+            width: 150px;
+            font-size: 13px;
+            color: #0268b3;
+            font-weight: bold;
+            background-color: rgb(250, 250, 250);
+        }
+    </style>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+
+            $("#txtProjName").blur(function () {
+                $("#showMsgProjName").show();
+                checkStr("txtProjName", false, 0, 100, "", "showMsgProjName");
+            });
+            $("#txtProjNo").blur(function () {
+                $("#showMsgProjNo").show();
+                checkStr("txtProjNo", false, 0, 40, "", "showMsgProjNo");
+            });
+
+            $("#txtStartDate").blur(function () {
+                $("#showMsgStartDate").show();
+                if ($("#txtEndDate").val() == null || $("#txtEndDate").val() == "") {
+                    checkDate("txtStartDate", true, "起始", "showMsgStartDate");
+                } else {
+                    checkDateTime("txtStartDate", "txtEndDate", false, "showMsgEndDate");
+                }
+            });
+
+            $("#txtEndDate").blur(function () {
+                $("#showMsgEndDate").show();
+                if ($("#txtStartDate").val() == null || $("#txtStartDate").val() == "") {
+                    checkDate("txtEndDate", true, "截止", "showMsgEndDate");
+                } else {
+                    checkDateTime("txtStartDate", "txtEndDate", false, "showMsgEndDate");
+                }
+            });
+        });
+
+        function isOk() {
+            if (checkStr("txtProjName", true, 0, 100, "", "showMsgProjName") == false
+                && checkStr("txtProjNo", true, 0, 40, "", "showMsgProjNo") == false
+                && checkDate("txtStartDate", true, "起始", "showMsgStartDate") == false
+                && checkDate("txtEndDate", true, "截止", "showMsgEndDate") == false
+                && checkDropDown("ddlknowledge2", "showMsgddlknowledge2") == false
+                && checkDropDown("ddlYear", "showMsgYear") == false
+                && checkDropDown("ddlIsReback", "showMsgIsReback") == false
+                && checkStr("txtExeUnit", true, 0, 20, "", "showMsgExeUnit") == false) {
+                alert("至少需要一个查询条件，请填写查询条件");
+                return false;
+            } else {
+                if (checkDateTime("txtStartDate", "txtEndDate", false, "showMsgEndDate") == false) {
+                    alert("查询条件错误:\n起始日期不能大于截止日期！");
+                } else {
+                    return true;
+                }
+
+            }
+        }
+
+        function dropDown(beforID, lastId, msgId) {
+            if (!checkDropDown(beforID, msgId) || !checkDropDown(lastId, msgId)) {
+                return false;
+            }
+            return true;
+        }
+
+        function view(id) {
+            Opendg9x6('项目查看', 'ProjectView.aspx?id=' + id);
+        }
+
+        //查看审核意见
+        function viewAuditContent(id) {
+            Opendg7x5('项目审核意见', '../Goverment/Search/AuditContent.aspx?id=' + id);
+        }
+
+        function selectChange(obj) {
+            if ($(obj).val() == "1") {
+                $("#ddlScore").html("<option value='1'>所有</option>");
+            } else if ($(obj).val() == "759") {
+                var str = "<option value='1'>所有</option><option value='762'>国家级项目</option><option value='768'>省级项目</option><option value='798'>Ⅰ类远程项目</option>";
+                $("#ddlScore").html(str);
+            } else if ($(obj).val() == "760") {
+                var str = "<option value='1'>所有</option><option value='771'>省级学术团体(Ⅱ类)项目</option><option value='770'>州(市)级项目</option><option value='799'>Ⅱ类远程项目</option>";
+                $("#ddlScore").html(str);
+            }
+        }
+    </script>
+</head>
+<body style="background-color:#fff;min-width:1250px;">
+<form method="post" action="./ProjectList.aspx?notype=0" id="form1">
+    <div class="aspNetHidden">
+        <input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value=""/>
+        <input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value=""/>
+        <input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value=""/>
+        <input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE"
+               value="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"/>
+    </div>
+
+    <script type="text/javascript">
+        //<![CDATA[
+        var theForm = document.forms['form1'];
+        if (!theForm) {
+            theForm = document.form1;
+        }
+
+        function __doPostBack(eventTarget, eventArgument) {
+            if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+                theForm.__EVENTTARGET.value = eventTarget;
+                theForm.__EVENTARGUMENT.value = eventArgument;
+                theForm.submit();
+            }
+        }
+
+        //]]>
+    </script>
+
+
+    <script src="/WebResource.axd?d=cN325TXSNIOiWDa0r8P3fCqT58_21fovb5pwc4vlQzIhj6PB9IN8NVgIs_ThtyoNZFiIiXpPT_-GtE5iplqUC3XR4_M1&amp;t=638628495619783110" type="text/javascript"></script>
+
+
+    <script src="/ScriptResource.axd?d=4EAoSzbnra_WpMls-vGhigNzdpHIRfD8tctdMFpbGPSXFYCA6Tsi7JD7qGSc0O6elNgTyIryPdFMQKzsEIi-AWzEtYd6Jlx4tQVcul_VGcJRDA5LJkYM7yVVOAXac_nknou8V0vdFZdd5PRGnhs74zoY6u-b9sMOou6_cuEsTu1tiKiS0&amp;t=2a9d95e3" type="text/javascript"></script>
+    <script src="/ScriptResource.axd?d=BraFqftP9zeF6xBoUzROEkYeXWHaKnlLTQ6EmnrqJy_6y5f4VrvrC-mOCgLa5FI7nl-8a7vhy221KsQg7FYjuEbfRXwdhz3efHQgEQWGdL4Xzjo2zf_8Hbef6l5v_MUhap0QB43ZIk9RjqiWct0L_XoX2RAUImBEIhMlGNajx1_3W6zy0&amp;t=2a9d95e3" type="text/javascript"></script>
+    <div class="aspNetHidden">
+
+        <input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="A0D377C0"/>
+        <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION"
+               value="/wEdAFW+1iZtUXD1iiYNl7mGUOfe6FwxLXIvJnnZxRCkEGL2vkMCElCx1sJb2i1QHjQcOAzim+7D+erG5fSex7bXMQforGc8UDYPZh5Mgcx4hoxu64ZqgpTyby406Rv1YHJzujVyDMMh8xeYf6PrLVxRbSzoDpR0lifo+3CGgGU9JKMiZch3PYOJnWSUvy/6dJ/6ywk56cu0mmjnuz6ZDaiS26P0W/4QfB18hizrD4qao5nHWqh+ll8bPCT3wuR0TgExGp9vS79CQa5ggWUtrK6PFC5G8yj5pziZnc9o7m5WYH/5dyR47yXMYY821iaNnrCpK0ACOJt5/dU+KjDlgAWgO1GgxNzSGO5EsJ1Ly8350wMVG8cQwuOJegZDiOUuiQDJaM+pPCEPil6vdf9XzhOYdKXbhnjSsToMjF9hFp/LRubd+8VecpHVjDrZPM0g7q0rwVAvrBXXXU2xqht+4cpP4ail4KI9SPT5t3rf84i50AI5lZuihgWWN+O1C10Zx60Vg/QXymrxaipnyVOez5QC0OK1mpFGpYHrBm7b+JbITQe3UL5CnkvDPiem9qJAnkn04JgfO9QLtX6e1ikrTYtt6hWU/jNeNAOvN/3YYmhmcawNlA6z28we+p+jSlcZaGo3atvhQNIBVVefySxJsReWTqCcDLqh7KHd5kCaPs8wrRORcejgKpeU1PlVkfvSfFSFMYvQakHenTf7R+cnLYhrD5SUNxRgOtwA8ph33t35PrLe9ZKg2sFD4B0COGAW8cQZodBdCbdTvhCdLOTOD4VMXntFwVMHEdRyJrnN9nKdyXSM84EMW7HYgcMdcYWeNlzal6qWxyXT888bbcaf+YMjHsaefLuDsYqubU9r4xV9K/vIizEC7fPA9US4A+nYvGf6xAk27T1b8SjaRJzhwAUOt4h6H/8xMCCmJGiTTdHFdqbKW/oHEwL3IVDiJfn6Nhq3aqmHYMcvVp1pgWQQT69W8JX6A7kR9YOe8xcaDSuIimBQ0D/XcxQnwo+k9NmX/r6xo+iWFE7Pw4Cq7tF6Ps3Ta71G24kzohnG6f45zr1rRJWT5E2XB7T6bnXxs6YEmFAtWgrLaZfWj29OVrHgJn8pQBft1WnyYZdXWiwMhJTEy6FePOKkQ9zRKk6wUYh0gjBfQYzwQkCXQj0bn8FMnI25KuT/lVF1njYnked2ZnQySLuXol+owDHZq9HF654YuiHTEbR7NF2O/lEooDpD94qoDCVMlyoVb05HFxAEyD2qUuK0toNlu46PWqapjvmYmag36rcXZrzYfMtetjU7Cw0JadHd3f13gK6uAbYFS12VLgfWmMbCWnLFN851eQ/D47zE3oQlK0zTD4TGYHQ0oYkqBfKlccRyJd/JNyMjQdvuborvc57ncyET320UC9zpnZioc6VIhr3Iz82Tjtn6sdvWZIKkE6xT88eU23mXQtKt61lAGFDrnzM85amiq0HGwa5wnb/N+DvxnwFeFeJ9MIBWR693P1jLJHiqNfRsonZfptdXUwrp9NDMNj0NSYiKP1+YcDInlsXuajdmOL3ojUuoOO755lQGvT97csrLeabuSW/Q9caCCKu7v21E7BHMfdy3NyJX4nhnte+p9+9L33nB907aOv2azAt39FMACkTJ/eQmLjeFUMxRPm8ca7sFxRIV193wrfkwfZouec6dDdyWz6U3Vq6kPnRiOpqefbbUd7tI+GeAgZXBKwfpYpqqzLqVCJCasJQkczHdx6CtthRTRKfcBCuvZIKZIgKa4tTGhYZ9aNlcmQcuYoeMg8+6ykNFi46jh345rvYsUmKjBP/ydw69DhSZclk/cr53kFlfP624BQk1RWk="/>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        Sys.WebForms.PageRequestManager._initialize('ScriptManager2', 'form1', ['tUpdatePanel1', 'UpdatePanel1'], [], [], 90, '');
+        //]]>
+    </script>
+
+    <div style=" background-color:#fbfbfb; border-bottom:1px solid #ebebeb;">
+        <div class="tabsecond" style=" background-color:#fbfbfb; line-height:30px;width:100%;margin:l0 auto;position:relative;z-index:101;">
+            <div style="float:left; font-size:15px;line-height:30px; font-weight:bold;color:#aaa; padding-left:10px;">
+                历年公布项目查询
+            </div>
+            <div style="float:right;font-size:15px;line-height:30px; font-weight:bold;color:#aaa; padding-right:10px;">
+                <a href="https://gzcme.yiboshi.com" style="cursor:pointer;">返回</a>
+            </div>
+            <div style="clear:both;height:0px;width:0px;"></div>
+        </div>
+    </div>
+
+
+<!--   第一个table处 -->
+    <table class="tab1">
+        <tr>
+            <td class="editTabletitle">年度：</td>
+            <td>
+                <select name="ddlYear" id="ddlYear" style="width:185px;">
+                    <option value="">所有</option>
+                    <option value="2026">2026</option>
+                    <option selected="selected" value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                    <option value="2019">2019</option>
+                    <option value="2018">2018</option>
+                    <option value="2017">2017</option>
+                    <option value="2016">2016</option>
+
+                </select>
+                <span id="showMsgYear" style="display:none"></span>
+            </td>
+            <td class="editTabletitle">所属学科：</td>
+            <td>
+                <div id="UpdatePanel1">
+
+                    <select name="ddlknowledgeType" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlknowledgeType\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlknowledgeType" class="textbg2">
+                        <option selected="selected" value="1">西医</option>
+                        <option value="2">中医</option>
+
+                    </select>
+                    <select name="ddlknowledge2" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlknowledge2\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlknowledge2" class="textbg2">
+                        <option value="0">所有</option>
+                        <option selected="selected" value="597">基础形态</option>
+                        <option value="594">基础机能</option>
+                        <option value="598">临床内科学</option>
+                        <option value="593">临床外科学</option>
+                        <option value="592">妇产科学</option>
+                        <option value="599">儿科学</option>
+                        <option value="590">眼、耳鼻喉学科</option>
+                        <option value="585">口腔医学学科</option>
+                        <option value="584">影像医学学科</option>
+                        <option value="586">急诊学</option>
+                        <option value="596">医学检验</option>
+                        <option value="589">公共卫生与预防医学</option>
+                        <option value="588">药学</option>
+                        <option value="591">护理学</option>
+                        <option value="595">医学教育与卫生管理</option>
+                        <option value="587">康复医学</option>
+                        <option value="2117">全科医学</option>
+                        <option value="2118">麻醉学</option>
+                        <option value="2119">重症医学</option>
+                        <option value="2121">核医学</option>
+                        <option value="2122">医院感染（管理）学</option>
+                        <option value="2123">心理学</option>
+                        <option value="2124">卫生法规与医学伦理学</option>
+                        <option value="600">输血医学</option>
+                        <option value="1961">中医基础医学</option>
+                        <option value="1962">中医临床医学</option>
+                        <option value="1963">中西医结合基础</option>
+                        <option value="1964">民族医药学</option>
+                        <option value="1965">其他</option>
+                        <option value="1987">皮肤病学与性病学</option>
+
+                    </select>
+                    <select name="ddlknowledge3" id="ddlknowledge3" class="textbg2">
+                        <option selected="selected" value="0">所有</option>
+                        <option value="636">组织胚胎学</option>
+                        <option value="653">解剖学</option>
+                        <option value="671">遗传学</option>
+                        <option value="686">病理学</option>
+                        <option value="1960">寄生虫学</option>
+                        <option value="683">微生物学</option>
+
+                    </select>
+                    <span id="showMsgddlknowledge2" style="display:none"></span>
+                    <span id="showMsgddlknowledge3" style="display:none"></span>
+
+                </div>
+            </td>
+            <td class="editTabletitle">申报单位：</td>
+            <td>
+                <input name="TextAppunit" type="text" maxlength="50" id="TextAppunit" class="textbg2" style=" width:185px;"/>
+
+                <span id="Span3" style="display:none"></span>
+            </td>
+        </tr>
+        <tr style=" height:30px;">
+            <td class="editTabletitle">项目名称：</td>
+            <td>
+                <input name="txtProjName" type="text" maxlength="50" id="txtProjName" class="textbg2" style=" width:200px;"/>
+                <span id="showMsgProjName" style="display:none"></span>
+            </td>
+            <td class="editTabletitle">项目编号：</td>
+            <td>
+                <input name="txtProjNo" type="text" maxlength="20" id="txtProjNo" class="textbg2" style=" width:200px;"/>
+                <span id="showMsgProjNo" style="display:none"></span>
+            </td>
+            <td class="editTabletitle">项目状态：</td>
+            <td>
+                <select name="selectState" id="selectState" style="width:205px;">
+                    <option selected="selected" value="0">所有</option>
+                    <option value="1">已通过</option>
+                    <option value="2">不通过</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="editTabletitle">举办状态：</td>
+            <td>
+                <select name="selectHoldState" id="selectHoldState" style="width:205px;">
+                    <option selected="selected" value="0">所有</option>
+                    <option value="1">已举办</option>
+                    <option value="2">未举办</option>
+                </select>
+            </td>
+            <td class="editTabletitle">项目性质：</td>
+            <td>
+                <select name="ddlIsReback" id="ddlIsReback" style="width:185px;">
+                    <option selected="selected" value="0">所有</option>
+                    <option value="1">申报项目</option>
+                    <option value="2">备案项目</option>
+                    <option value="2">延期项目</option>
+
+                </select>
+                <span id="showMsgIsReback" style="display:none"></span>
+            </td>
+            <td class="editTabletitle">主办单位：</td>
+            <td>
+                <input name="txtExeUnit" type="text" maxlength="50" id="txtExeUnit" class="textbg2" style=" width:200px;"/>
+                <span id="showMsgExeUnit" style="display:none"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="editTabletitle">学分级别：</td>
+            <td>
+                <select name="ddlScoreLevel" id="ddlScoreLevel" onchange="selectChange(this)">
+                    <option selected="selected" value="1">所有</option>
+                    <option value="759">Ⅰ类学分</option>
+                    <option value="760">Ⅱ类学分</option>
+                </select>
+                <select name="ddlScore" id="ddlScore">
+                    <option selected="selected" value="1">所有</option>
+                </select>
+            </td>
+            <td class="editTabletitle">项目负责人：</td>
+            <td colspan="3">
+                <input name="TextBoxHeader" type="text" maxlength="25" id="TextBoxHeader" class="textbg2" onblur="checkStr(&quot;txtProjNo&quot;,false,0,40,&quot;项目编号&quot;,&quot;showMsgProjNo&quot;)" style=" width:200px;"/>
+                <span id="Span1" style="display:none"></span>
+            </td>
+        </tr>
+        <tr style="display:none;">
+            <td colspan="5"></td>
+            <td class="editTabletitle" style="display:none;">拟举办日期：</td>
+            <td style="display:none;">
+                <input name="txtStartDate" type="text" id="txtStartDate" readonly="readonly" class="textbg1 date" onfocus="WdatePicker()"/>
+                -
+                <input name="txtEndDate" type="text" id="txtEndDate" readonly="readonly" class="textbg1 date" onfocus="WdatePicker()"/>
+                <span id="showMsgStartDate" style="display:none"></span><span id="showMsgEndDate" style="display:none"></span>
+            </td>
+            <td class="editTabletitle"></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+    <div style="background-color:rgb(250,250,250);">
+        <center style=" padding:5px;">
+            <input type="submit" name="Button1" value="查询" onclick="return true;return isOk();" id="Button1" class="input01"/>&nbsp;&nbsp;
+            <input type="submit" name="Button2" value="刷新" id="Button2" class="input01b"/>
+        </center>
+    </div>
+    <!--搜索条件 End-->
+    <!--列表内容 Begin-->
+    <div>
+
+
+
+<!--        第二个table处,  真正的数据table    -->
+        <table class="listTable" cellspacing="0" rules="all" border="1" id="grvList" style="width:100%;border-collapse:collapse;">
+            <tr class="listTableHeader">
+                <th scope="col">查看</th>
+                <th scope="col">项目编号</th>
+                <th scope="col">项目名称</th>
+                <th scope="col">主办单位</th>
+                <th scope="col" style="white-space:nowrap;">学分级别</th>
+                <th scope="col" style="white-space:nowrap;">项目级别</th>
+                <th scope="col">拟举办日期</th>
+                <th scope="col">授予学分</th>
+                <th scope="col">举办地点</th>
+                <th scope="col">教学对象</th>
+                <th scope="col">拟招生人数</th>
+                <th scope="col">项目负责人</th>
+                <th scope="col">审核意见</th>
+            </tr>
+            <tr class="listTableTd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableTd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=df3fc5da-d829-4c12-bcf1-05c08dbeb043")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=df3fc5da-d829-4c12-bcf1-05c08dbeb043")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025-01-04-011(国)</td>
+                <td>
+                    <a href="#" onclick="view('df3fc5da-d829-4c12-bcf1-05c08dbeb043')">细胞病理学规范化系统培训班暨细胞病理学初筛员培训项目</a>
+                </td>
+                <td align="left">贵州医科大学附属医院</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅰ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>国家级继续医学教育项目</span>
+                </td>
+                <td>2025-07-18至2025-07-20</td>
+                <td>4分</td>
+                <td align="left">贵阳市</td>
+                <td align="left">专业从事细胞病理学诊断工作的病理医师</td>
+                <td>100</td>
+                <td>金木兰</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('df3fc5da-d829-4c12-bcf1-05c08dbeb043')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableAtd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableAtd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=dbb0454b-f31a-4def-a8f9-ae46c3750c7e")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=dbb0454b-f31a-4def-a8f9-ae46c3750c7e")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025-05-081</td>
+                <td>
+                    <a href="#" onclick="view('dbb0454b-f31a-4def-a8f9-ae46c3750c7e')">2025年川渝黔医学遗传学学术会议暨2025年贵州省医学会医学遗传学学分会学术年会</a>
+                </td>
+                <td align="left">贵州省医学会.</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅱ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅱ类)</span>
+                </td>
+                <td>2025-06-07至2025-06-08</td>
+                <td>5分</td>
+                <td align="left">重庆</td>
+                <td align="left">产前诊断、遗传咨询、检验、妇幼保健、儿科、血液、产科</td>
+                <td>500</td>
+                <td>黄盛文</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('dbb0454b-f31a-4def-a8f9-ae46c3750c7e')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableTd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableTd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=b5a8d67c-9e03-453a-9884-be29dddf2b3f")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=b5a8d67c-9e03-453a-9884-be29dddf2b3f")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025-04-123</td>
+                <td>
+                    <a href="#" onclick="view('b5a8d67c-9e03-453a-9884-be29dddf2b3f')">贵阳市病理读片会及学术讲座</a>
+                </td>
+                <td align="left">贵阳市医学会</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅱ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅱ类)</span>
+                </td>
+                <td>2025-05-16至2025-05-17</td>
+                <td>4分</td>
+                <td align="left">贵阳市第一人民医院门诊大会议</td>
+                <td align="left">贵阳市病理分会成员及全市病理相关人员</td>
+                <td>200</td>
+                <td>桂传枝</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('b5a8d67c-9e03-453a-9884-be29dddf2b3f')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableAtd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableAtd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=181dbcd7-c647-4608-9e27-fbf9c2188d22")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=181dbcd7-c647-4608-9e27-fbf9c2188d22")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025-04-143</td>
+                <td>
+                    <a href="#" onclick="view('181dbcd7-c647-4608-9e27-fbf9c2188d22')">2025年黔南州疟疾、重点寄生虫病防治及镜检技术培训班</a>
+                </td>
+                <td align="left">黔南州疾病预防控制中心</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅱ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅱ类)</span>
+                </td>
+                <td>2025-05-12至2025-05-13</td>
+                <td>5分</td>
+                <td align="left">都匀市港龙大酒店</td>
+                <td align="left">全州疾控及综合医院疟疾防治及镜检相关专业技术人员</td>
+                <td>200</td>
+                <td>祝俊</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('181dbcd7-c647-4608-9e27-fbf9c2188d22')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableTd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableTd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=c7cb4232-edc3-40e9-a45e-bbeb1ef420e4")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=c7cb4232-edc3-40e9-a45e-bbeb1ef420e4")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025-01-04-024 (国)</td>
+                <td>
+                    <a href="#" onclick="view('c7cb4232-edc3-40e9-a45e-bbeb1ef420e4')">肿瘤病理诊断学习班</a>
+                </td>
+                <td align="left">遵义医科大学附属医院</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅰ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>国家级继续医学教育项目</span>
+                </td>
+                <td>2025-10-24至2025-10-26</td>
+                <td>6分</td>
+                <td align="left">贵州凯里市</td>
+                <td align="left">相关专业的继续教育对象</td>
+                <td>200</td>
+                <td>郑洪</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('c7cb4232-edc3-40e9-a45e-bbeb1ef420e4')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableAtd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableAtd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=a292dbf6-0772-41c9-8b98-4022a651e6b3")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=a292dbf6-0772-41c9-8b98-4022a651e6b3")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025-03-056</td>
+                <td>
+                    <a href="#" onclick="view('a292dbf6-0772-41c9-8b98-4022a651e6b3')">2025年贵州省人民医院遗传病与出生缺陷专科联盟学习黔线之守护女性生殖健康</a>
+                </td>
+                <td align="left">贵州省人民医院</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅱ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅱ类)</span>
+                </td>
+                <td>2025-03-27至2025-03-27</td>
+                <td>1分</td>
+                <td align="left">贵州省人民医院</td>
+                <td align="left">遗传咨询、检验、妇幼保健、儿科、血液、产科、罕见病诊等</td>
+                <td>500</td>
+                <td>陈琨</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('a292dbf6-0772-41c9-8b98-4022a651e6b3')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableTd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableTd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=8da018cf-0362-4c7f-a5a1-0ce250c096af")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=8da018cf-0362-4c7f-a5a1-0ce250c096af")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025A-2-1167</td>
+                <td>
+                    <a href="#" onclick="view('8da018cf-0362-4c7f-a5a1-0ce250c096af')">跨域共“践”-病理赋能——遵医附院-西南医院联合病理读片会</a>
+                </td>
+                <td align="left">遵义医科大学附属医院</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅰ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅰ类)</span>
+                </td>
+                <td>2025-07-26至2025-07-26</td>
+                <td>2分</td>
+                <td align="left">遵义医科大学附属医院图书馆</td>
+                <td align="left">贵州省病理医生</td>
+                <td>80</td>
+                <td>黎成芳</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('8da018cf-0362-4c7f-a5a1-0ce250c096af')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableAtd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableAtd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=c1ebdc52-7b87-4975-94c1-ff757afc48ef")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=c1ebdc52-7b87-4975-94c1-ff757afc48ef")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025A-2-925</td>
+                <td>
+                    <a href="#" onclick="view('c1ebdc52-7b87-4975-94c1-ff757afc48ef')">贵州省医学会热带病与寄生虫学分会2025年学术年会</a>
+                </td>
+                <td align="left">贵州省医学会.</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅰ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅰ类)</span>
+                </td>
+                <td>2025-10-25至2025-10-26</td>
+                <td>5分</td>
+                <td align="left">贵州医科大学</td>
+                <td align="left">贵州省热带病及寄生虫学专业教学、医疗和防控部门的人员</td>
+                <td>100</td>
+                <td>吴家红</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('c1ebdc52-7b87-4975-94c1-ff757afc48ef')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableTd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableTd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=b7f5102d-d212-46f1-9cac-0d4f3abae949")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=b7f5102d-d212-46f1-9cac-0d4f3abae949")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025A-2-1478</td>
+                <td>
+                    <a href="#" onclick="view('b7f5102d-d212-46f1-9cac-0d4f3abae949')">卵巢疾病诊疗能力提升培训班</a>
+                </td>
+                <td align="left">六盘水市人民医院</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅰ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅰ类)</span>
+                </td>
+                <td>2025-10-25至2025-10-25</td>
+                <td>2分</td>
+                <td align="left">六盘水市人民医院病理科大会议室</td>
+                <td align="left">病理从业人员、妇产科医师、肿瘤科医师、放射介入科医师。</td>
+                <td>100</td>
+                <td>张家龙</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('b7f5102d-d212-46f1-9cac-0d4f3abae949')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableAtd" onmouseover="this.className=&#39;rowChangeColor&#39;;" onmouseout="this.className=&#39;listTableAtd&#39;;">
+                <td>
+                    <a href='#' onclick='Opendg9x6("查看页面","ProjectView.aspx?id=140fe654-3c8e-4a3e-87e9-720e3469f98e")'><font color="#0268b3">[项目信息]</font></a>
+                    <span style='display:none'><a href='#' onclick='Opendg6x5("项目通知","ProjectNoticeView.aspx?id=140fe654-3c8e-4a3e-87e9-720e3469f98e")'><font color="#0268b3">[通知]</font></a></span>
+                </td>
+                <td>2025A-2-1329</td>
+                <td>
+                    <a href="#" onclick="view('140fe654-3c8e-4a3e-87e9-720e3469f98e')">消化道疾病病理诊断学习班</a>
+                </td>
+                <td align="left">贵州中医药大学第一附属医院</td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>Ⅰ类学分</span>
+                </td>
+                <td align="center" style="white-space:nowrap;">
+                    <span>省级继续医学教育项目(Ⅰ类)</span>
+                </td>
+                <td>2025-09-20至2025-09-21</td>
+                <td>4分</td>
+                <td align="left">云岩区宝山北路71号贵州中医药大学第一附属医院</td>
+                <td align="left">全省从事病理诊断的医师</td>
+                <td>100</td>
+                <td>陈昱江</td>
+                <td>
+                    <a href="javascript:void(0)" onclick="viewAuditContent('140fe654-3c8e-4a3e-87e9-720e3469f98e')">查看</a>
+                </td>
+            </tr>
+            <tr class="listTableFooter" align="right">
+                <td valign="top" colspan="13"><img id="grvList_grvListBF_img" title="首页" src="/images/icon-offFirst.gif"/><img id="grvList_grvListBP_img" title="上一页" src="/images/icon-offBack.gif"/><span> 1/4 </span><input type="image" name="grvList$ctl13$grvListBN_ImageButton"
+                                                                                                                                                                                                                                    id="grvList_grvListBN_ImageButton" title="下一页"
+                                                                                                                                                                                                                                    src="/images/icon-onNext.gif"/><input type="image"
+                                                                                                                                                                                                                                                                          name="grvList$ctl13$grvListBL_ImageButton"
+                                                                                                                                                                                                                                                                          id="grvList_grvListBL_ImageButton"
+                                                                                                                                                                                                                                                                          title="末页"
+                                                                                                                                                                                                                                                                          src="/images/icon-onLast.gif"/><span> 转到第</span><select
+                        name="grvList$ctl13$grvListB_ddl" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;grvList$ctl13$grvListB_ddl\&#39;,\&#39;\&#39;)&#39;, 0)" id="grvList_grvListB_ddl">
+                    <option selected="selected" value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+
+                </select><span>页 当前1-10条 | 共35条 每页显示</span><select name="grvList$ctl13$grvListB_ddlSize" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;grvList$ctl13$grvListB_ddlSize\&#39;,\&#39;\&#39;)&#39;, 0)" id="grvList_grvListB_ddlSize">
+                    <option selected="selected" value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="500">500</option>
+
+                </select><span>行</span></td>
+            </tr>
+        </table>
+
+
+
+
+    </div>
+</form>
+</body>
+</html>
+
+
+Process finished with exit code 0

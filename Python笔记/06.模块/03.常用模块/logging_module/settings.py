@@ -45,7 +45,7 @@ LOGGING_DIC = {
     'filters': {},
     # handlers是日志的接收者，不同的handler会将日志输出到不同的位置
     'handlers': {
-        #打印到终端的日志
+        # 打印到终端的日志
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',  # 打印到屏幕
@@ -62,11 +62,11 @@ LOGGING_DIC = {
             'formatter': 'standard',
 
         },
-        #打印到文件的日志,收集info及以上的日志
+        # 打印到文件的日志,收集info及以上的日志
         'other': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',  # 保存到文件
-            'filename': 'a2.log', # os.path.join(os.path.dirname(os.path.dirname(__file__)),'log','a2.log')
+            'filename': 'a2.log',  # os.path.join(os.path.dirname(os.path.dirname(__file__)),'log','a2.log')
             'encoding': 'utf-8',
             'formatter': '继续教育数据分析入库',
 
@@ -74,14 +74,14 @@ LOGGING_DIC = {
     },
     # loggers是日志的产生者，产生的日志会传递给handler然后控制输出
     'loggers': {
-        #logging.getLogger(__name__)拿到的logger配置
+        # logging.getLogger(__name__)拿到的logger配置
         'kkk': {
-            'handlers': ['console','other'],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
-            'level': 'DEBUG', # loggers(第一层日志级别关限制)--->handlers(第二层日志级别关卡限制)
+            'handlers': ['console', 'other'],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
+            'level': 'DEBUG',  # loggers(第一层日志级别关限制)--->handlers(第二层日志级别关卡限制)
             'propagate': False,  # 默认为True，向上（更高level的logger）传递，通常设置为False即可，否则会一份日志向上层层传递
         },
         '终端提示': {
-            'handlers': ['console',],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
+            'handlers': ['console', ],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
             'level': 'DEBUG',  # loggers(第一层日志级别关限制)--->handlers(第二层日志级别关卡限制)
             'propagate': False,  # 默认为True，向上（更高level的logger）传递，通常设置为False即可，否则会一份日志向上层层传递
         },
@@ -92,10 +92,3 @@ LOGGING_DIC = {
         },
     },
 }
-
-
-
-
-
-
-

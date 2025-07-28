@@ -1,0 +1,48 @@
+https://cmegsb.cma.org.cn/national_project/listProjectGongbu.jsp
+
+edu_key.py   学科分析并插入到Excel表格
+pdf_to_excel.py   把PDF文件内容格式化并分析治理导入到Excel(继续教育项目)
+pdf_to_html.py    把PDF文件输出为HTML页面
+
+
+
+继续教育数据治理流程：(新一年项目需导入该年学科数据)
+1. edu_key.py   学科分析并插入到Excel表格
+2. pdf_to_excel.py   把PDF文件内容格式化并分析治理导入到Excel(继续教育项目)
+
+3. tel  project_name  company 三列换行的问题
+update edu_record set tel = REPLACE(REPLACE(tel, CHAR(13),''), CHAR(10),'');
+update edu_record set project_name = REPLACE(REPLACE(project_name, CHAR(13),''), CHAR(10),'');
+update edu_record set company = REPLACE(REPLACE(company, CHAR(13),''), CHAR(10),'');
+
+4. 更新关联学科
+UPDATE edu_record INNER JOIN
+(
+SELECT
+  *
+FROM
+  (
+    SELECT
+      edu_project_id, CONCAT( SUBSTR( project_num, 1, 4 ), SUBSTR( project_num, 6, 2 ), SUBSTR( project_num, 9, 2 ) ) AS edu2
+    FROM
+      edu_record
+    WHERE
+      edu_project_id > 143527
+  ) AS t1
+LEFT JOIN (
+  SELECT
+      k2.id AS id,
+      CONCAT(k1.h_name, '-', k2.h_name) AS kechen
+  FROM
+      (SELECT * FROM edu_record_key WHERE id LIKE '2025%' AND (parent_id is NULL or `parent_id`='')) AS k1
+  LEFT JOIN
+      (SELECT * FROM edu_record_key WHERE id LIKE '2025%' AND LENGTH(parent_id)>0) AS k2
+  ON k1.id = k2.parent_id
+) AS t2
+ON t1.edu2 = t2.id
+) AS a
+set edu_record.discipline=a.kechen WHERE a.edu_project_id = edu_record.edu_project_id
+
+## 解决导入时间出现 0000:00:00 的问题 (在导入的时候将Excel startdate 和 enddate 修改为日期格式就不会出现该类问题)
+update edu_record e ,edu_record_2023_0314 ee set e.startdate=ee.startdate,e.enddate = ee.enddate where e.project_num=ee.project_num and e.edu_project_id >'109999'
+

@@ -1,0 +1,28 @@
+mkvirtualenv -p python3.8.10 project
+
+pip install --upgrade pip
+
+pip install requests==2.28.2
+pip install beautifulsoup4==4.12.3
+pip install openpyxl==3.1.2
+pip install pandas==1.5.3
+pip install PyMySQL==1.1.1
+pip install lxml==4.9.2
+
+
+
+
+pip install urllib3==1.26.15
+pip install grep openpyxl== 3.1.2
+
+
+Traceback (most recent call last):
+  File "c.py", line 2, in <module>
+    import ctypes
+  File "/usr/local/lib/python3.8/ctypes/__init__.py", line 7, in <module>
+    from _ctypes import Union, Structure, Array
+ModuleNotFoundError: No module named '_ctypes'
+
+
+yum install libffi-devel
+重新编译
