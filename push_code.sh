@@ -7,4 +7,4 @@ git commit -m $commit
 #git push -u origin master
 
 log="代码更新记录: $commit"
-echo >> ./push_code_log.txt
+echo $log >> ./push_code_log.txt
