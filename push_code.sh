@@ -1,8 +1,8 @@
-#
-#commit=$1
-#branch_name=$2
-#git add .
-#git commit -m $commit
-#git push origin branch_name
+
+commit=`date +%Y-%m-%d`
+echo commit
+git add .
+git commit -m $commit
+#git push -u origin branch_name
 #
 #
